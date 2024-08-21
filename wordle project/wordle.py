@@ -31,10 +31,12 @@ print("Let's play wordle! /n Guess the Wordle in 6 tries. Each guess must be a v
 
 
 # TASK I: Build a loop that loops 6 times (representing the number of guesses a user has)
+winner = False;
+
 for i in range(6):
 
   # TASK J: Define a variable 'hint' and set the return of makeAGuess(guess) to that variable
-  hinto = makeAGuess(input("make a 5 letter guess:").upper());
+  hinto = makeAGuess(input(f"(guess {i+1} of 6) make a 5 letter guess:").upper());
 
   # TASK K: Print hint
   print(hinto);
@@ -42,10 +44,9 @@ for i in range(6):
   # TASK L: Check if hint = "GGGGG". If so the user has won. Print a win message and break the loop
   if (hinto == "GGGGG"):
     print("you win!");
+    winner = True;
     break;
 
 # TASK M: After the loop has finished, meaning the user has run out of guesses, check if hint != "GGGGG". If so, the user has lost. Print a lose message. 
-
-
-# TASK N: After the loop has finished, meaning the user has run out of guesses, check if hint != "GGGGG". If so, the user has lost. Print a lose message. 
-
+if (not winner):
+  print("lol u suck nerd. get better. you cretin. you utter finch")
