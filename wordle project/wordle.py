@@ -1,5 +1,5 @@
 # TASK A: Define a variable 'word' that holds the correct word for the wordle game
-word = "SWAMP";
+word = "HORSE";
 
 # TASK B: Define a function 'makeAGuess()' that passes in a users guess as a parameter
 def makeAGuess(_guess):
@@ -43,7 +43,7 @@ for i in range(6):
 
   # TASK L: Check if hint = "GGGGG". If so the user has won. Print a win message and break the loop
   if (hinto == "GGGGG"):
-    print("you win!");
+    print(f"The word was {word}. You win!");
     winner = True;
     break;
 
