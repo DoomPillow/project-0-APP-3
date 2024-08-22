@@ -1,0 +1,25 @@
+
+game features:
+    travelling to different locations
+    interacting with characters
+    fighting
+    solving puzzles
+    story stuff
+
+locations could be objects linking to their respective sub areas and interatctions and whatnot?
+ 
+Story:
+you are a junior at PHS going period to period
+Final boss is the principal, who is actually a swarm of rats.
+
+anime club is just garbage
+Jrotc
+Bathrom smoke
+Dr. Rosa happy
+Security guard is actually a robot
+
+##############
+
+You arrive at PHS without a schedule, so you go to Mr. Tran to find out what it is. 
+You go to his office, he'll only give you the schedule if you get him a coffee.
+The only area you can go is to the lunch area because geese block the way elsewhere.
