@@ -1,0 +1,19 @@
+#### august 22
+- Created simple fighting system with attack, item, and fleeing functionality.
+- Added bomb, health potion, and handcuff items. All items function except for handcuffs.
+- Created a bare-bones intro into the game.
+
+#### august 23
+- Health Potion was changed to pill
+- Added Conditions (Angry, Poisoned, and Cuffed)
+- Added abilities (Power Stance, Bulldog Slam, Taunt, Ptooie)
+- AI was used to help refactor variables independent of any class into the `Player` and `Enemy` classes.
+
+#### august 24
+
+- Handcuffs were changed to Disposable camera, and Cuffed condition was changed to stunned
+- Added "Headbutt" ability.
+- Fixed a bug where poison would wait until the enemy had -1 hp to die.
+- AI was used to refactor Conditions into classes and functions
+- checking if the battle is over has been abstracted into the `check_for_outcome()` function.
+- added the `examine` action that tells you the functionality of an item
