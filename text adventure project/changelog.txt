@@ -17,3 +17,9 @@
 - AI was used to refactor Conditions into classes and functions
 - checking if the battle is over has been abstracted into the `check_for_outcome()` function.
 - added the `examine` action that tells you the functionality of an item
+
+- Added functionality for other enemies in the battle
+- Added the `target` action for changing the targeted enemy
+- Actions dialogue now only appears from a command
+- Added juice box item.
+- Changed UI to fit multiple enemies. It doesn't look that great, but works for now. 
