@@ -17,31 +17,30 @@ class Condition:
 def apply_angry(target):
     if "💢" not in target.emojo:
         target.emojo += "💢"
-        target.hitratio -= 15
-        target.dmgbonus += 2
+        target.hitratio -= 30
+        target.dmgbonus += 3
 
 
 def remove_angry(target):
     if "💢" in target.emojo:
         target.emojo = target.emojo.replace('💢', '')
-        target.hitratio += 15
-        target.dmgbonus -= 2
+        target.hitratio += 30
+        target.dmgbonus -= 3
 
 
 def apply_poisoned(target):
     if "❤️" in target.emojo:
         target.emojo = target.emojo.replace('❤️', '💚')
     else: 
-        target.hp -= 1
-        print(f"> {target.name} takes 1 poison damage")
+        target.hp -= 2
+        print(f"> {target.name} takes 2 poison damage")
         time.sleep(1)
 
-#def tick_poisoned(target):
-#    target.hp -= 1
 
 def remove_poisoned(target):
     if "💚" in target.emojo:
         target.emojo = target.emojo.replace('💚', '❤️')
+
 
 def apply_stunned(target):
     if "💫" not in target.emojo:
@@ -54,9 +53,23 @@ def remove_stunned(target):
         print(f"> {target.name} shakes off their daze!!")
         time.sleep(1)
 
+def apply_soapy(target):
+    if "🫧" not in target.emojo:
+        target.emojo += "🫧"
+        target.hitratio -= 25
+
+
+def remove_soapy(target):
+    if "🫧" in target.emojo:
+        target.emojo = target.emojo.replace('🫧', '')
+        target.hitratio += 25
+        print(f"> {target.name} wipes off the suds.")
+        time.sleep(1)
+
 # Instantiate conditions
 conditions = {
     "angry": Condition("angry", apply_effect=apply_angry, remove_effect=remove_angry),
     "poisoned": Condition("poisoned", apply_effect=apply_poisoned, remove_effect=remove_poisoned, reapply = True),
     "stunned": Condition("stunned", apply_effect=apply_stunned, remove_effect=remove_stunned),
+    "soapy": Condition("soapy", apply_effect=apply_soapy, remove_effect=remove_soapy),
 }

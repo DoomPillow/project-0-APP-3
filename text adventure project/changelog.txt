@@ -19,7 +19,13 @@
 - added the `examine` action that tells you the functionality of an item
 
 - Added functionality for other enemies in the battle
+- Changed UI to fit multiple enemies. It doesn't look that great, but works for now. 
 - Added the `target` action for changing the targeted enemy
 - Actions dialogue now only appears from a command
 - Added juice box item.
-- Changed UI to fit multiple enemies. It doesn't look that great, but works for now. 
+- Added soap bar item
+- Changed pill item to painkiller. It now heals more but lowers your damage bonus.
+- Fixed certain action conditions (or lack thereof) that caused crashes
+- Rebalanced some abilities
+- Added Bandaid
+
