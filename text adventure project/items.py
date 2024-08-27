@@ -111,3 +111,32 @@ class itm_hobobomb(Item):
         time.sleep(0.85)
         for enemy in enemies:
             enemy.apply_condition(conditions["poisoned"], duration = random.randint(2,4))
+
+##### debug items
+
+class itm_cancer(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Pure Liquid Cancer"
+        self.emojo = "🧪"
+        self.description = "You probably shouldn't drink this."
+    
+    def use(self, target, player, enemies):
+        player.hp = 0
+        print(f"> You drink the liquid and instantly become a ball of cancer.")
+
+class itm_nuke(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Nuclear Bomb"
+        self.emojo = "☢️"
+        self.description = "Why do you have this? You shouldn't be allowed to have this."
+    
+    def use(self, target, player, enemies):
+        print("> You poke the nuclear bomb, and it detonates!")
+        time.sleep(0.85)
+        for enemy in enemies:
+            dmg = random.randint(400, 800)
+            print(f"> 💥 You blow up {enemy.name} for {dmg} damage!!! 💥")
+            enemy.hp -= dmg
+            time.sleep(0.5)

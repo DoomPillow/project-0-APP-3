@@ -29,3 +29,8 @@
 - Rebalanced some abilities
 - Added Bandaid
 
+#### august 25
+
+- Fixed a bug where putting words instead of a number into the ability command would crash everything
+- Added a death ascii message, and a win ascii message with a temporary loot message
+- Added cancer and nuke items purely for debugging. Useful for instantly killing the player or all the enemies.

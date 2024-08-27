@@ -1,6 +1,6 @@
 import time
 import random
-from items import itm_bomb, itm_pill, itm_cam, itm_juice, itm_soap, itm_bandaid
+from items import itm_bomb, itm_pill, itm_cam, itm_juice, itm_soap, itm_bandaid, itm_cancer, itm_nuke
 from conditions import conditions
 
 round_num = 0
@@ -13,7 +13,7 @@ class Player:
         self.hp = self.hpmax
         self.ppmax = 50
         self.pp = self.ppmax
-        self.inventory = [itm_bomb(), itm_pill(), itm_pill(), itm_bomb(), itm_cam(), itm_juice(), itm_juice(), itm_soap(), itm_bandaid(), itm_bandaid()]
+        self.inventory = [itm_bomb(), itm_pill(), itm_pill(), itm_bomb(), itm_cam(), itm_juice(), itm_juice(), itm_soap(), itm_bandaid(), itm_bandaid(), itm_nuke(), itm_cancer()]
         self.target = None
 
         self.dmgbonus = 0
@@ -79,7 +79,7 @@ class Enemy:
 ##### Initialize Fight
 
 #enemies = [Enemy("Bodyguard 1", 20), Enemy("Mr Tran", 35), Enemy("Bodyguard 2", 20)]
-enemies = [Enemy("Junior Recruit 1", 25), Enemy("Junior Recruit 2", 25), Enemy("Junior Recruit 3", 25)]
+enemies = [Enemy("Bodyguard 1", 20), Enemy("Mr Tran", 30), Enemy("Bodyguard 2", 20)]
 
 fight_state = "ongoing"
 player_turn = True
@@ -132,21 +132,21 @@ while fight_state == "ongoing":
         move_on = False
         
         while not move_on:
-            action = input(f":: what do you want to do? (⯐ {player.target.name if player.target != None else "None"}): ").lower().split(' ')
+            action = input(f"\n:: what do you want to do? (⯐ {player.target.name if player.target != None else "None"}): ").lower().split(' ')
            
             match action[0]:
                 
                 case "actions":
                     print("""
 **Actions**
-- attack
-- target [enemy name]
-- abilities
-- ability [ability #]
-- inventory
-- examine [item name]
-- use [item name]
-- flee""")
+- attack                : attacks the targeted creature
+- target [enemy name]   : changes which creature is targeted
+- abilities             : gives a list of your abilities
+- ability [ability #]   : uses the given ability
+- inventory             : gives a list of the items in your inventory
+- examine [item name]   : tells you about the given item
+- use [item name]       : uses the given item
+- flee                  : you run away like a pansy""")  
                 case "target":
                     target_name = " ".join(action).replace("target ", "")
                     found = False
@@ -185,6 +185,8 @@ while fight_state == "ongoing":
                 case "ability":
                     if len(action) <= 1:
                         print("❌ You need to specify which ability you want to use")
+                    elif not action[1].isnumeric():
+                        print("❌ You need to provide a number")
                     else:
                         match (int(action[1])):
                             case 2: ## Bulldog Beating
@@ -316,8 +318,41 @@ match(fight_state):
     case "fleed":
         print("You ran away! Coward.")
     case "playerlose":
-        print("You died. L")
+        print("""
+▓██   ██▓ ▒█████   █    ██    ▓█████▄  ██▓▓█████ ▓█████▄  ▐██▌
+ ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▒██▀ ██▌▓██▒▓█   ▀ ▒██▀ ██▌ ▐██▌
+  ▒██ ██░▒██░  ██▒▓██  ▒██░   ░██   █▌▒██▒▒███   ░██   █▌ ▐██▌
+  ░ ▐██▓░▒██   ██░▓▓█  ░██░   ░▓█▄   ▌░██░▒▓█  ▄ ░▓█▄   ▌ ▓██▒
+  ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░▒████▓ ░██░░▒████▒░▒████▓  ▒▄▄ 
+   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒     ▒▒▓  ▒ ░▓  ░░ ▒░ ░ ▒▒▓  ▒  ░▀▀▒
+ ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░     ░ ▒  ▒  ▒ ░ ░ ░  ░ ░ ▒  ▒  ░  ░
+ ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░     ░ ░  ░  ▒ ░   ░    ░ ░  ░     ░
+ ░ ░         ░ ░     ░           ░     ░     ░  ░   ░     ░   
+ ░ ░                           ░                  ░           
+        """)
     case "playerwin":
-        print(f"You win! Good job.")
+        print("""
+ █████   █████  ███            █████                                  ███
+░░███   ░░███  ░░░            ░░███                                  ░███
+ ░███    ░███  ████   ██████  ███████    ██████  ████████  █████ ████░███
+ ░███    ░███ ░░███  ███░░███░░░███░    ███░░███░░███░░███░░███ ░███ ░███
+ ░░███   ███   ░███ ░███ ░░░   ░███    ░███ ░███ ░███ ░░░  ░███ ░███ ░███
+  ░░░█████░    ░███ ░███  ███  ░███ ███░███ ░███ ░███      ░███ ░███ ░░░ 
+    ░░███      █████░░██████   ░░█████ ░░██████  █████     ░░███████  ███
+     ░░░      ░░░░░  ░░░░░░     ░░░░░   ░░░░░░  ░░░░░       ░░░░░███ ░░░ 
+                                                            ███ ░███     
+                                                           ░░██████      
+                                                            ░░░░░░      
+ 
+ ________________________________________________________________________
+ |-------------------------------- Loot --------------------------------|
+       
+        - ✨ Cool Item
+        - ✨ Cool Item
+        - 🧸 Really Cool Item
+        - 🗑️  Meh Item
+        - ☢️  Nuclear Bomb
+
+        """)
     case _:
         print("Someone won. Dunno who.")
