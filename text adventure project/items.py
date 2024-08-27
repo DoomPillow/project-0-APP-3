@@ -1,11 +1,12 @@
 import random
 from conditions import conditions
+import time
 
 ### Item Class
 class Item:
     def __init__(self):
         self.name = "undefined"
-        self.itemid = -1
+        self.emojo = "❔"
         self.description = "this looks broken and like the dev doesn't want you to see this"
 
 ### Specific Items
@@ -14,35 +15,128 @@ class itm_bomb(Item):
         super().__init__()
         self.name = "Bomb"
         self.emojo = "🧨"
-        self.itemid = 0
         self.description = "An explosive weapon dealing a decent amount of damage."
     
-    def use(self, target, player):
-        dmg = random.randint(4, 8)
-        print(f"> 💥💥💥 You blow up {target.name} for {dmg} damage!!! 💥💥💥")
-        target.hp -= dmg
+    def use(self, target, player, enemies):
+        print("> You hurl a stick of dynamite onto the battlefield...")
+        time.sleep(0.85)
+        for enemy in enemies:
+            dmg = random.randint(4, 8)
+            print(f"> 💥 You blow up {enemy.name} for {dmg} damage!!! 💥")
+            enemy.hp -= dmg
+            time.sleep(0.3)
 
 class itm_pill(Item):
     def __init__(self):
         super().__init__()
-        self.name = "Pill"
+        self.name = "Painkiller"
         self.emojo = "💊"
-        self.itemid = 1
-        self.description = "A delicious little capsule that heals you."
+        self.description = "It stops the pain, but temporarily makes you weaker."
     
-    def use(self, target, player):
-        heal = random.randint(4, 6)
+    def use(self, target, player, enemies):
+        heal = 10
         player.hp = min(player.hp + heal, player.hpmax)
-        print(f"> You down a pill and heal to ❤ {player.hp} hp!")
+        player.dmgbonus -= 1
+        print(f"> You down a painkiller, and recover ❤️ {heal} hp!")
+
+class itm_bandaid(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Bandaid"
+        self.emojo = "🩹"
+        self.description = "Heals a moderate amount."
+    
+    def use(self, target, player, enemies):
+        heal = random.randint(5, 9)
+        player.hp = min(player.hp + heal, player.hpmax)
+        print(f"> You slap a bandaid on your gushing wounds, and recover ❤️ {heal} hp!")
 
 class itm_cam(Item):
     def __init__(self):
         super().__init__()
         self.name = "Disposable Camera"
         self.emojo = "📷"
-        self.itemid = 2
         self.description = "A very cheap disposable camera. Its bright flash can stun an enemy for a couple rounds."
     
-    def use(self, target, player):
-        print(f"> You camera flash {target.name}, stunning them!")
+    def use(self, target, player, enemies):
+        print(f"> 📸 You camera flash {target.name}, stunning them!")
         target.apply_condition(conditions["stunned"], duration = 3)
+
+class itm_juice(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Juice Box"
+        self.emojo = "🧃"
+        self.description = "A bland yet refreshing juice. Recovers some energy."
+    
+    def use(self, target, player, enemies):
+        heal = random.randint(15, 30)
+        player.pp = min(player.pp + heal, player.ppmax)
+        print(f"> You slurp down the juice box and recover ⚡{heal} energy!")
+
+class itm_cigarette(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Cigarette"
+        self.emojo = "🚬"
+        self.description = "Mmmmm... lung cancer. Cures poison."
+    
+    def use(self, target, player, enemies):
+        heal = random.randint(15, 30)
+        player.pp = min(player.pp + heal, player.ppmax)
+        print(f"> You slurp down the juice box and recover ⚡{heal} energy!")
+
+class itm_soap(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Soap Bar"
+        self.emojo = "🧼"
+        self.description = "A sudsy bar of soap. Can be thrown to make your opponents slippery."
+    
+    def use(self, target, player, enemies):
+        print("> 🫧  You hurl the bar of soap onto the battlefield, slipperying everyone up!")
+        time.sleep(0.85)
+        for enemy in enemies:
+            enemy.apply_condition(conditions["soapy"], duration = random.randint(2,4))
+
+class itm_hobobomb(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Hobo Bomb"
+        self.emojo = "🧦"
+        self.description = "A terrible-smelling fibrous green ball wrapped up in a sock. It smells poisonous."
+    
+    def use(self, target, player, enemies):
+        print("> You hurl the Hobo Bomb onto the battlefield... poisoning everyone!")
+        time.sleep(0.85)
+        for enemy in enemies:
+            enemy.apply_condition(conditions["poisoned"], duration = random.randint(2,4))
+
+##### debug items
+
+class itm_cancer(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Pure Liquid Cancer"
+        self.emojo = "🧪"
+        self.description = "You probably shouldn't drink this."
+    
+    def use(self, target, player, enemies):
+        player.hp = 0
+        print(f"> You drink the liquid and instantly become a ball of cancer.")
+
+class itm_nuke(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Nuclear Bomb"
+        self.emojo = "☢️"
+        self.description = "Why do you have this? You shouldn't be allowed to have this."
+    
+    def use(self, target, player, enemies):
+        print("> You poke the nuclear bomb, and it detonates!")
+        time.sleep(0.85)
+        for enemy in enemies:
+            dmg = random.randint(400, 800)
+            print(f"> 💥 You blow up {enemy.name} for {dmg} damage!!! 💥")
+            enemy.hp -= dmg
+            time.sleep(0.5)

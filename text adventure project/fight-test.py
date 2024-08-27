@@ -1,23 +1,27 @@
 import time
 import random
-from items import itm_bomb, itm_pill, itm_cam
+from items import itm_bomb, itm_pill, itm_cam, itm_juice, itm_soap, itm_bandaid, itm_cancer, itm_nuke
 from conditions import conditions
+
+round_num = 0
 
 ##### Player Class
 class Player:
     def __init__(self):
         self.emojo = "❤️"
-        self.hpmax = 10
+        self.hpmax = 25
         self.hp = self.hpmax
         self.ppmax = 50
         self.pp = self.ppmax
-        self.inventory = [itm_bomb(), itm_pill(), itm_pill(), itm_bomb(), itm_cam()]
+        self.inventory = [itm_bomb(), itm_pill(), itm_pill(), itm_bomb(), itm_cam(), itm_juice(), itm_juice(), itm_soap(), itm_bandaid(), itm_bandaid(), itm_nuke(), itm_cancer()]
+        self.target = None
 
         self.dmgbonus = 0
-        self.hitratio = 90 # % chance of hitting
+        #self.hitratio = 90 # % chance of hitting # currently doesn't do anything
 
 
 player = Player()
+dead_enemies = []
 
 ##### Enemy Class
 class Enemy:
@@ -26,6 +30,7 @@ class Enemy:
         self.name = name
         self.hpmax = hp
         self.hp = self.hpmax
+        self.dead = False
 
         self.dmgbonus = 0
         self.hitratio = 75 # % chance of hitting
@@ -40,6 +45,8 @@ class Enemy:
             condition.apply(self)
 
     def rebuff(self):
+
+        ## Do condition stuff
         expired_conditions = []
 
         for condition_name, duration in self.active_conditions.items():
@@ -47,7 +54,6 @@ class Enemy:
             if conditions[condition_name].reapply:
                 conditions[condition_name].apply(self)
                 
-
             if self.active_conditions[condition_name] == 0:
                 expired_conditions.append(condition_name)
 
@@ -56,13 +62,24 @@ class Enemy:
             condition.remove(self)
             del self.active_conditions[condition_name]
 
+        ## Check if I'm dead
+        if self.hp <= 0 and not self.dead:
+            self.dead = True
+            self.hp = 0 # just so hp doesn't go negative cuz that looks gross
+            print(f"> 🪦  {self.name} drops dead!")
+            if player.target == self:
+                player.target = None
+            dead_enemies.append(self)
+            return
+
     def has_condition(self, condition_name):
         return self.active_conditions.get(condition_name, 0) > 0
 
 
-##### Initialize Player and Enemy
+##### Initialize Fight
 
-enemy = Enemy("Mr. Tran", 30)
+#enemies = [Enemy("Bodyguard 1", 20), Enemy("Mr Tran", 35), Enemy("Bodyguard 2", 20)]
+enemies = [Enemy("Bodyguard 1", 20), Enemy("Mr Tran", 30), Enemy("Bodyguard 2", 20)]
 
 fight_state = "ongoing"
 player_turn = True
@@ -71,54 +88,84 @@ player_turn = True
 
 def check_for_outcome():
     global fight_state
-
+    
     if player.hp <= 0:
         fight_state = "playerlose"
         return True
-    if enemy.hp <= 0:
+    if len(enemies) == 0:
         fight_state = "playerwin"
         return True
     return False
+
+print("(Type 'actions' for a list of commands)")
 
 ##### Game Loop
 while fight_state == "ongoing":
     
     #### Player Turn
     if player_turn:
+        
+        # Update the state of each enemy
+        for enemy in enemies:
+            enemy.rebuff()
 
-        enemy.rebuff()
+        # Remove all of the dead enemies from the enemy list
+        for corpse in dead_enemies:
+            enemies.remove(corpse)
+        dead_enemies.clear()
+
         # Check to see if fight is over in case the buffs killed an enemy
         if check_for_outcome():
             break;
 
-        print("-----------------------------------------------")
-        print(f"Player  {player.emojo} {player.hp}/{player.hpmax}      vs      {enemy.emojo} {enemy.hp}/{enemy.hpmax} {enemy.name}")
-        print(f"        ⚡ {player.pp}/{player.ppmax} ")
-        print("-----------------------------------------------")
-        print("""
-        **Actions**
-        - attack
-        - abilities
-        - ability [ability #]
-        - inventory
-        - examine [item name]
-        - use [item name]
-        - flee
-        """)
+        if player.target == None:
+            player.target = enemies[0]
+
+        print("---------------------------------------------------")
+        print(f"    Player {player.emojo} {player.hp}/{player.hpmax} ⚡{player.pp}/{player.ppmax}")
+        print("                 · · · · vs. · · · ·")
+        for enemy in enemies:
+            print(f"            {enemy.emojo} {enemy.hp}/{enemy.hpmax}          {enemy.name}")
+        #print("---------------------------------------------------")
+
         
         move_on = False
         
         while not move_on:
-            action = input(":: what do you want to do? ").lower().split(' ')
+            action = input(f"\n:: what do you want to do? (⯐ {player.target.name if player.target != None else "None"}): ").lower().split(' ')
            
             match action[0]:
-               
+                
+                case "actions":
+                    print("""
+**Actions**
+- attack                : attacks the targeted creature
+- target [enemy name]   : changes which creature is targeted
+- abilities             : gives a list of your abilities
+- ability [ability #]   : uses the given ability
+- inventory             : gives a list of the items in your inventory
+- examine [item name]   : tells you about the given item
+- use [item name]       : uses the given item
+- flee                  : you run away like a pansy""")  
+                case "target":
+                    target_name = " ".join(action).replace("target ", "")
+                    found = False
+                    for enemy in enemies:
+                        if enemy.name.lower() == target_name and not enemy.dead:
+                            player.target = enemy
+                            found = True
+                            break
+                    if found == False:
+                        print("❌ You can't target that")
                 case "attack":
-                    dmg = random.randint(1, 3 + player.dmgbonus)
-                    print(f"> You beat {enemy.name} for {dmg} damage!!!")
-                    enemy.hp -= dmg
-                    move_on = True
-             
+                    if player.target == "none":
+                        print("❌ You need to actually target someone.")
+                    else:
+                        dmg = random.randint(1, max(3 + player.dmgbonus, 1) )
+                        print(f"> You beat {player.target.name} for {dmg} damage!!!")
+                        player.target.hp -= dmg
+                        move_on = True
+
                 case "inventory":
                     if len(player.inventory) > 0:
                         for i in range(len(player.inventory)):
@@ -136,61 +183,80 @@ while fight_state == "ongoing":
                     """)
                     
                 case "ability":
-                    match (int(action[1])):
-                        case 2: ## Bulldog Beating
-                            if player.pp >= 15:
-                                player.pp -= 15
-                                if random.randint(1, 5) > 2:
-                                    dmg = random.randint(4, 10 + player.dmgbonus)
-                                    print(f"> You hurl yourself toward {enemy.name}, dealing {dmg} damage!!!")
-                                    enemy.hp -= dmg
+                    if len(action) <= 1:
+                        print("❌ You need to specify which ability you want to use")
+                    elif not action[1].isnumeric():
+                        print("❌ You need to provide a number")
+                    else:
+                        match (int(action[1])):
+                            case 2: ## Bulldog Beating
+                                if player.pp >= 15:
+                                    if player.target == "none":
+                                        print("❌ You need to actually target someone.")
+                                    else:
+                                        player.pp -= 15
+                                        if random.randint(1, 5) > 2:
+                                            dmg = random.randint(4, 12 + player.dmgbonus)
+                                            print(f"> You hurl yourself toward {player.target.name}, dealing {dmg} damage!!!")
+                                            player.target.hp -= dmg
+                                        else:
+                                            print(f"> You hurl yourself toward {player.target.name}, but miss!")
+                                        
+                                        move_on = True
                                 else:
-                                    print(f"> You hurl yourself toward {enemy.name}, but miss!")
+                                    print("❌ You don't have enough energy for that")
                                 
+                            case 3: ## Taunt
+                                if player.pp >= 10:
+                                    if player.target == "none":
+                                        print("❌ You need to actually target someone.")
+                                    else:
+                                        player.pp -= 10
+                                        print(f"> You do a little dance, which makes {player.target.name} turn red with rage!")
+                                        player.target.apply_condition(conditions["angry"], duration = 4)
+                                        move_on = True
+                                else:
+                                    print("❌ You don't have enough energy for that")
+                            case 4: ## Ptooie
+                                if player.pp >= 20:
+                                    if player.target == "none":
+                                        print("❌ You need to actually target someone.")
+                                    else:
+                                        player.pp -= 20
+                                        print(f"> You huak a loogie at {player.target.name}, instantly befouling them with your vile disease!")
+                                        player.target.apply_condition(conditions["poisoned"], duration = 6)
+                                        move_on = True
+                                else:
+                                    print("❌ You don't have enough energy for that")
+                            case 1: ## Power Stance
+                                energy = random.randint(4, 11)
+                                print(f"> You recover {energy} energy!")
+                                player.pp = min(player.pp + energy, player.ppmax)
                                 move_on = True
-                            else:
-                                print("❌ You don't have enough energy for that")
-                            
-                        case 3: ## Taunt
-                            if player.pp >= 10:
-                                player.pp -= 10
-                                print(f"> You do a little dance, which makes {enemy.name} turn red with rage!")
-                                enemy.apply_condition(conditions["angry"], duration = 4)
-                                move_on = True
-                            else:
-                                print("❌ You don't have enough energy for that")
-                        case 4: ## Ptooie
-                            if player.pp >= 20:
-                                player.pp -= 20
-                                print(f"You huak a loogie at {enemy.name}, instantly befouling them with your vile disease!")
-                                enemy.apply_condition(conditions["poisoned"], duration = 6)
-                                move_on = True
-                            else:
-                                print("❌ You don't have enough energy for that")
-                        case 1: ## Power Stance
-                            energy = random.randint(3, 14)
-                            print(f"> You recover {energy} energy!")
-                            player.pp = min(player.pp + energy, player.ppmax)
-                            move_on = True
-                        case 5: ## Headbutt
-                            if player.pp >= 20:
-                                player.pp -= 20
-                                dmg = random.randint(4, 7 + player.dmgbonus)
-                                print(f"> You bash your skull against {enemy.name}, dealing {dmg} damage!!!")
-                                enemy.hp -= dmg
-                                if random.randint(1,3) == 1:
-                                    #print(f"> {enemy.name} is stunned!")
-                                    enemy.apply_condition(conditions["stunned"], duration = 2 )
-                            
-                                move_on = True
-                            else:
-                                print("❌ You don't have enough energy for that")
-               
+                            case 5: ## Headbutt
+                                if player.pp >= 20:
+                                    if player.target == "none":
+                                        print("❌ You need to actually target someone.")
+                                    else:
+                                        player.pp -= 20
+                                        dmg = random.randint(4, 7 + player.dmgbonus)
+                                        print(f"> You bash your skull against {player.target.name}, dealing {dmg} damage!!!")
+                                        player.target.hp -= dmg
+                                        if random.randint(1,3) == 1:
+                                            #print(f"> {player.target.name} is stunned!")
+                                            player.target.apply_condition(conditions["stunned"], duration = 2 )
+                                    
+                                        move_on = True
+                                else:
+                                    print("❌ You don't have enough energy for that")
+                            case _:
+                                print("❌ That's not an ability")
+
                 case "examine":
                     found = False;
                     for _item in player.inventory:
                         if  " ".join(action) == f"examine {_item.name.lower()}":
-                            print(f"\n{_item.emojo} *{_item.name}*\n{_item.description}\n")
+                            print(f"\n{_item.emojo} *{_item.name}*\n{_item.description}")
                             found = True
                             break
                     if not found:
@@ -199,7 +265,7 @@ while fight_state == "ongoing":
                 case "use":
                     for _item in player.inventory:
                         if  " ".join(action) == f"use {_item.name.lower()}":
-                            _item.use(enemy, player)
+                            _item.use(player.target, player, enemies)
                             player.inventory.remove(_item)
                             move_on = True
                             break
@@ -213,33 +279,80 @@ while fight_state == "ongoing":
                 case _:
                     print("❌ That's not a command. Try harder.")
 
+        time.sleep(1)
+
     ##################### Enemy Turn   
     else:
-        if enemy.has_condition("stunned"):
-            print(f"> 💫 {enemy.name} is stunned..")
-        else:
-            if random.randint(1, 100) <= enemy.hitratio:
-                dmg = random.randint(1, 3 + enemy.dmgbonus)
-                print(f"> {enemy.name} smacks you for {dmg} damage!!!")
-                player.hp -= dmg
+        for enemy in enemies:
+            
+            # Ignore dead enemies
+            if enemy.hp <= 0:
+                continue
+
+            # Ignore stunned enemies
+            if enemy.has_condition("stunned"):
+                if enemy.active_conditions["stunned"] > 1:
+                    print(f"> 💫 {enemy.name} is stunned..")
+                    time.sleep(1.0)
+            # The actual turn
             else:
-                print(f"> {enemy.name} takes a swing... but misses!")
-        
+                if random.randint(1, 100) <= enemy.hitratio:
+                    dmg = random.randint(1, 3 + enemy.dmgbonus)
+                    print(f"> {enemy.name} smacks you for {dmg} damage!!!")
+                    player.hp -= dmg
+                    time.sleep(1.0)
+                else:
+                    print(f"> {enemy.name} takes a swing... but misses!")
+                    time.sleep(1.0)
+            
     # End fight if conditions are met
-    if check_for_outcome():
-        break;
+    #if check_for_outcome():
+    #    break;
     
     # Reset
+    round_num += 1
     player_turn = not player_turn
-    time.sleep(1.0)
 
 ### Game over message
 match(fight_state):
     case "fleed":
         print("You ran away! Coward.")
     case "playerlose":
-        print("You died. L")
+        print("""
+▓██   ██▓ ▒█████   █    ██    ▓█████▄  ██▓▓█████ ▓█████▄  ▐██▌
+ ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▒██▀ ██▌▓██▒▓█   ▀ ▒██▀ ██▌ ▐██▌
+  ▒██ ██░▒██░  ██▒▓██  ▒██░   ░██   █▌▒██▒▒███   ░██   █▌ ▐██▌
+  ░ ▐██▓░▒██   ██░▓▓█  ░██░   ░▓█▄   ▌░██░▒▓█  ▄ ░▓█▄   ▌ ▓██▒
+  ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░▒████▓ ░██░░▒████▒░▒████▓  ▒▄▄ 
+   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒     ▒▒▓  ▒ ░▓  ░░ ▒░ ░ ▒▒▓  ▒  ░▀▀▒
+ ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░     ░ ▒  ▒  ▒ ░ ░ ░  ░ ░ ▒  ▒  ░  ░
+ ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░     ░ ░  ░  ▒ ░   ░    ░ ░  ░     ░
+ ░ ░         ░ ░     ░           ░     ░     ░  ░   ░     ░   
+ ░ ░                           ░                  ░           
+        """)
     case "playerwin":
-        print(f"You defeated {enemy.name}! Good job.")
+        print("""
+ █████   █████  ███            █████                                  ███
+░░███   ░░███  ░░░            ░░███                                  ░███
+ ░███    ░███  ████   ██████  ███████    ██████  ████████  █████ ████░███
+ ░███    ░███ ░░███  ███░░███░░░███░    ███░░███░░███░░███░░███ ░███ ░███
+ ░░███   ███   ░███ ░███ ░░░   ░███    ░███ ░███ ░███ ░░░  ░███ ░███ ░███
+  ░░░█████░    ░███ ░███  ███  ░███ ███░███ ░███ ░███      ░███ ░███ ░░░ 
+    ░░███      █████░░██████   ░░█████ ░░██████  █████     ░░███████  ███
+     ░░░      ░░░░░  ░░░░░░     ░░░░░   ░░░░░░  ░░░░░       ░░░░░███ ░░░ 
+                                                            ███ ░███     
+                                                           ░░██████      
+                                                            ░░░░░░      
+ 
+ ________________________________________________________________________
+ |-------------------------------- Loot --------------------------------|
+       
+        - ✨ Cool Item
+        - ✨ Cool Item
+        - 🧸 Really Cool Item
+        - 🗑️  Meh Item
+        - ☢️  Nuclear Bomb
+
+        """)
     case _:
         print("Someone won. Dunno who.")

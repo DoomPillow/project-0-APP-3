@@ -17,3 +17,20 @@
 - AI was used to refactor Conditions into classes and functions
 - checking if the battle is over has been abstracted into the `check_for_outcome()` function.
 - added the `examine` action that tells you the functionality of an item
+
+- Added functionality for other enemies in the battle
+- Changed UI to fit multiple enemies. It doesn't look that great, but works for now. 
+- Added the `target` action for changing the targeted enemy
+- Actions dialogue now only appears from a command
+- Added juice box item.
+- Added soap bar item
+- Changed pill item to painkiller. It now heals more but lowers your damage bonus.
+- Fixed certain action conditions (or lack thereof) that caused crashes
+- Rebalanced some abilities
+- Added Bandaid
+
+#### august 25
+
+- Fixed a bug where putting words instead of a number into the ability command would crash everything
+- Added a death ascii message, and a win ascii message with a temporary loot message
+- Added cancer and nuke items purely for debugging. Useful for instantly killing the player or all the enemies.
