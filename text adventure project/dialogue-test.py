@@ -1,26 +1,17 @@
 import re
-import yaml
+import json
 
 class DialogueTree:
     def __init__(self, text_file=None):
         self.text = text_file or {}
         self.current_node = self.text
 
-    @classmethod
-    def from_raw_data(cls, raw_data):
-        text = raw_data.get('text')
-        warpid = raw_data.get('warpid')
-        
-        # Store the whole raw data structure under 'raw_data'
-        return cls(raw_data)
-
     @staticmethod
     def load_from_file(file_path):
-        with open(file_path, 'r') as f:
-            file_content = f.read()
-        
-        raw_data = yaml.safe_load(file_content)
-        return DialogueTree.from_raw_data(raw_data)
+        with open(file_path, 'r') as file:
+            dialogue_data = json.load(file)
+
+        return DialogueTree(dialogue_data)
 
     def process_text(self, input_text):
         tag_regex = r'\[.*?\]'
@@ -72,7 +63,5 @@ class DialogueTree:
         # Print the leaf node
         self.process_text(self.current_node["text"])
 
-
-# Load tran_dialogue.txt into a dialogue tree
-test_dialogue = DialogueTree.load_from_file('text adventure project/dialogue_001.txt')
-print(test_dialogue.text)
+test_dialogue = DialogueTree.load_from_file('text adventure project/dialogue_001.json')
+test_dialogue.run()
