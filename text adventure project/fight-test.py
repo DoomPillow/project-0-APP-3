@@ -1,7 +1,8 @@
 import time
 import random
-from items import itm_bomb, itm_pill, itm_cam, itm_juice, itm_soap, itm_bandaid, itm_cancer, itm_nuke
+from items import itm_bomb, itm_pill, itm_cam, itm_juice, itm_soap, itm_bandaid, itm_milk, itm_hobobomb, itm_cigarette
 from conditions import conditions
+from enemies import Enemy, dead_enemies, Enemy_MrTran
 
 round_num = 0
 
@@ -9,33 +10,32 @@ round_num = 0
 class Player:
     def __init__(self):
         self.emojo = "❤️"
+        self.name = "You"
         self.hpmax = 25
         self.hp = self.hpmax
         self.ppmax = 50
         self.pp = self.ppmax
-        self.inventory = [itm_bomb(), itm_pill(), itm_pill(), itm_bomb(), itm_cam(), itm_juice(), itm_juice(), itm_soap(), itm_bandaid(), itm_bandaid(), itm_nuke(), itm_cancer()]
+        self.active_conditions = {}
+        self.inventory = [
+        itm_bomb(),
+        itm_bomb(),
+        itm_pill(), 
+        itm_pill(), 
+        itm_cam(), 
+        itm_juice(), 
+        itm_juice(), 
+        itm_soap(), 
+        itm_bandaid(),
+        itm_bandaid(),
+        itm_milk(), 
+        itm_hobobomb(),
+        itm_cigarette(),
+        ]
+
         self.target = None
 
         self.dmgbonus = 0
         #self.hitratio = 90 # % chance of hitting # currently doesn't do anything
-
-
-player = Player()
-dead_enemies = []
-
-##### Enemy Class
-class Enemy:
-    def __init__(self, name, hp):
-        self.emojo = "❤️"
-        self.name = name
-        self.hpmax = hp
-        self.hp = self.hpmax
-        self.dead = False
-
-        self.dmgbonus = 0
-        self.hitratio = 75 # % chance of hitting
-
-        self.active_conditions = {}
 
     def apply_condition(self, condition, duration):
         if condition.name in self.active_conditions:
@@ -44,6 +44,7 @@ class Enemy:
             self.active_conditions[condition.name] = duration
             condition.apply(self)
 
+
     def rebuff(self):
 
         ## Do condition stuff
@@ -51,35 +52,29 @@ class Enemy:
 
         for condition_name, duration in self.active_conditions.items():
             self.active_conditions[condition_name] = max(duration - 1, 0)
-            if conditions[condition_name].reapply:
+            
+            if self.active_conditions[condition_name] <= 0:
+                expired_conditions.append(condition_name)
+            
+            elif conditions[condition_name].reapply:
                 conditions[condition_name].apply(self)
                 
-            if self.active_conditions[condition_name] == 0:
-                expired_conditions.append(condition_name)
 
         for condition_name in expired_conditions:
             condition = conditions[condition_name]
             condition.remove(self)
             del self.active_conditions[condition_name]
 
-        ## Check if I'm dead
-        if self.hp <= 0 and not self.dead:
-            self.dead = True
-            self.hp = 0 # just so hp doesn't go negative cuz that looks gross
-            print(f"> 🪦  {self.name} drops dead!")
-            if player.target == self:
-                player.target = None
-            dead_enemies.append(self)
-            return
-
     def has_condition(self, condition_name):
         return self.active_conditions.get(condition_name, 0) > 0
 
 
+player = Player()
+
 ##### Initialize Fight
 
 #enemies = [Enemy("Bodyguard 1", 20), Enemy("Mr Tran", 35), Enemy("Bodyguard 2", 20)]
-enemies = [Enemy("Bodyguard 1", 20), Enemy("Mr Tran", 30), Enemy("Bodyguard 2", 20)]
+enemies = [Enemy("Bodyguard 1", 20), Enemy_MrTran(), Enemy("Bodyguard 2", 20)]
 
 fight_state = "ongoing"
 player_turn = True
@@ -107,7 +102,11 @@ while fight_state == "ongoing":
         
         # Update the state of each enemy
         for enemy in enemies:
-            enemy.rebuff()
+            enemy.rebuff(player)
+
+        # Update player conditions
+
+        player.rebuff()
 
         # Remove all of the dead enemies from the enemy list
         for corpse in dead_enemies:
@@ -176,10 +175,11 @@ while fight_state == "ongoing":
                 case "abilities":
                     print("""
     1 | Power Stance    : ⚡ 0 Recover a small amount of energy
-    2 | Bulldog Beating : ⚡ 15 A strong attack that's likely to miss
-    3 | Taunt           : ⚡ 10 Makes you deal and take more damage for two rounds
-    4 | Ptooie          : ⚡ 15 you spit on your opponent, poisoning them for five rounds
-    5 | Headbutt        : ⚡ 20 A strong attack with a chance to stun for one round
+    2 | Defend          : ⚡ 5 Try to defend yourself from incoming attacks
+    3 | Bulldog Beating : ⚡ 15 A strong attack that's likely to miss
+    4 | Taunt           : ⚡ 10 Angers an opponent, making them less likely to hit you, but deal more damage
+    5 | Ptooie          : ⚡ 15 you spit on your opponent, poisoning them for five rounds
+    6 | Headbutt        : ⚡ 20 A strong attack with a chance to stun for one round
                     """)
                     
                 case "ability":
@@ -189,7 +189,7 @@ while fight_state == "ongoing":
                         print("❌ You need to provide a number")
                     else:
                         match (int(action[1])):
-                            case 2: ## Bulldog Beating
+                            case 3: ## Bulldog Beating
                                 if player.pp >= 15:
                                     if player.target == "none":
                                         print("❌ You need to actually target someone.")
@@ -206,7 +206,7 @@ while fight_state == "ongoing":
                                 else:
                                     print("❌ You don't have enough energy for that")
                                 
-                            case 3: ## Taunt
+                            case 4: ## Taunt
                                 if player.pp >= 10:
                                     if player.target == "none":
                                         print("❌ You need to actually target someone.")
@@ -217,7 +217,7 @@ while fight_state == "ongoing":
                                         move_on = True
                                 else:
                                     print("❌ You don't have enough energy for that")
-                            case 4: ## Ptooie
+                            case 5: ## Ptooie
                                 if player.pp >= 20:
                                     if player.target == "none":
                                         print("❌ You need to actually target someone.")
@@ -233,7 +233,7 @@ while fight_state == "ongoing":
                                 print(f"> You recover {energy} energy!")
                                 player.pp = min(player.pp + energy, player.ppmax)
                                 move_on = True
-                            case 5: ## Headbutt
+                            case 6: ## Headbutt
                                 if player.pp >= 20:
                                     if player.target == "none":
                                         print("❌ You need to actually target someone.")
@@ -245,6 +245,17 @@ while fight_state == "ongoing":
                                         if random.randint(1,3) == 1:
                                             #print(f"> {player.target.name} is stunned!")
                                             player.target.apply_condition(conditions["stunned"], duration = 2 )
+                                    
+                                        move_on = True
+                                else:
+                                    print("❌ You don't have enough energy for that")
+                            case 7: ## Defend
+                                if player.pp >= 5:
+                                    if player.target == "none":
+                                        print("❌ You need to actually target someone.")
+                                    else:
+                                        player.pp -= 5
+                                        print("> You strike a defensive stance!")
                                     
                                         move_on = True
                                 else:
@@ -296,14 +307,7 @@ while fight_state == "ongoing":
                     time.sleep(1.0)
             # The actual turn
             else:
-                if random.randint(1, 100) <= enemy.hitratio:
-                    dmg = random.randint(1, 3 + enemy.dmgbonus)
-                    print(f"> {enemy.name} smacks you for {dmg} damage!!!")
-                    player.hp -= dmg
-                    time.sleep(1.0)
-                else:
-                    print(f"> {enemy.name} takes a swing... but misses!")
-                    time.sleep(1.0)
+                enemy.make_turn(player)
             
     # End fight if conditions are met
     #if check_for_outcome():

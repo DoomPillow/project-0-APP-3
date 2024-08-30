@@ -33,13 +33,15 @@ def apply_poisoned(target):
         target.emojo = target.emojo.replace('❤️', '💚')
     else: 
         target.hp -= 2
-        print(f"> {target.name} takes 2 poison damage")
-        time.sleep(1)
+        print(f"> 🟢 {target.name} takes 2 poison damage")
+        time.sleep(0.8)
 
 
 def remove_poisoned(target):
     if "💚" in target.emojo:
         target.emojo = target.emojo.replace('💚', '❤️')
+    print(f"> {target.name} is no longer poisoned!")
+    time.sleep(1)
 
 
 def apply_stunned(target):

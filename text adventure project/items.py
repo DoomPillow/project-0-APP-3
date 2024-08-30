@@ -79,12 +79,14 @@ class itm_cigarette(Item):
         super().__init__()
         self.name = "Cigarette"
         self.emojo = "🚬"
-        self.description = "Mmmmm... lung cancer. Cures poison."
+        self.description = "Smooooooooooothhhhh. Cures all ailments. May lower your lifespan."
     
     def use(self, target, player, enemies):
-        heal = random.randint(15, 30)
-        player.pp = min(player.pp + heal, player.ppmax)
-        print(f"> You slurp down the juice box and recover ⚡{heal} energy!")
+        print("> You eat a cigarette. You feel better.")
+        for condition in player.active_conditions:
+            player.active_conditions[condition] = 0
+        time.sleep(1.0)
+        player.rebuff()
 
 class itm_soap(Item):
     def __init__(self):
@@ -140,3 +142,14 @@ class itm_nuke(Item):
             print(f"> 💥 You blow up {enemy.name} for {dmg} damage!!! 💥")
             enemy.hp -= dmg
             time.sleep(0.5)
+
+class itm_milk(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Milk Carton"
+        self.emojo = "🥛"
+        self.description = "Makes you STRONG! RRRAAAAAAAGGGGHHHHH!!!"
+    
+    def use(self, target, player, enemies):
+        player.dmgbonus += 3
+        print(f"> 💪 You shotgun the milk carton, and your muscles grow to ten times their size!")
