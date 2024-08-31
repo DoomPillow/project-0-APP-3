@@ -1,0 +1,16 @@
+{
+    "text": "Mr. Tran: Okay, I’m ready now. What do you need?",
+    "options": {
+        "I need a schedule": {
+            "text": "Mr Tran: Huh? "
+        },
+        "why were you asleep just now?": {
+            "text": ""
+        },
+        "You suck, eat my pant.": {
+            "text": ""
+        }
+    },
+    "found": false,
+    "msgid": 1
+}

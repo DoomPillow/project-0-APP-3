@@ -102,4 +102,3 @@ time.sleep(1.4)
 print("...")
 time.sleep(3)
 
-print("Mr. Tran: Okay, I’m ready now. What do you need?")
