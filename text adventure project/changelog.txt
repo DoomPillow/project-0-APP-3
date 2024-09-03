@@ -1,15 +1,15 @@
-#### august 22
+#### v0.01
 - Created simple fighting system with attack, item, and fleeing functionality.
 - Added bomb, health potion, and handcuff items. All items function except for handcuffs.
 - Created a bare-bones intro into the game.
 
-#### august 23
+#### v0.02
 - Health Potion was changed to pill
 - Added Conditions (Angry, Poisoned, and Cuffed)
 - Added abilities (Power Stance, Bulldog Slam, Taunt, Ptooie)
 - AI was used to help refactor variables independent of any class into the `Player` and `Enemy` classes.
 
-#### august 24
+#### v0.10
 
 - Handcuffs were changed to Disposable camera, and Cuffed condition was changed to stunned
 - Added "Headbutt" ability.
@@ -29,13 +29,18 @@
 - Rebalanced some abilities
 - Added Bandaid
 
-#### august 25
+#### v0.11
 
 - Fixed a bug where putting words instead of a number into the ability command would crash everything
 - Added a death ascii message, and a win ascii message with a temporary loot message
 - Added cancer and nuke items purely for debugging. Useful for instantly killing the player or all the enemies.
 
-#### august 26
+#### v0.2
 
-- Created a simple dialogue tree system
-
+- Created a dialogue tree system with functionality for locking and unlocking messages, as well as warping to other nodes
+- Dialogue is loaded from json files.
+- Added colored text using ANSI escape sequences.
+- Player can now suffer from conditions as well (although wording is a bit strange for some of the console messages from conditions)
+- Mr Tran intro dialogue is now mostly if not fully complete.
+- AI was used to create the function for searching through the nodes to find the node with the given message ID
+- 

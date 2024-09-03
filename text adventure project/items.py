@@ -10,7 +10,7 @@ class Item:
         self.description = "this looks broken and like the dev doesn't want you to see this"
 
 ### Specific Items
-class itm_bomb(Item):
+class bomb(Item):
     def __init__(self):
         super().__init__()
         self.name = "Bomb"
@@ -26,7 +26,7 @@ class itm_bomb(Item):
             enemy.hp -= dmg
             time.sleep(0.3)
 
-class itm_pill(Item):
+class pill(Item):
     def __init__(self):
         super().__init__()
         self.name = "Painkiller"
@@ -39,7 +39,7 @@ class itm_pill(Item):
         player.dmgbonus -= 1
         print(f"> You down a painkiller, and recover ❤️ {heal} hp!")
 
-class itm_bandaid(Item):
+class bandaid(Item):
     def __init__(self):
         super().__init__()
         self.name = "Bandaid"
@@ -51,7 +51,7 @@ class itm_bandaid(Item):
         player.hp = min(player.hp + heal, player.hpmax)
         print(f"> You slap a bandaid on your gushing wounds, and recover ❤️ {heal} hp!")
 
-class itm_cam(Item):
+class cam(Item):
     def __init__(self):
         super().__init__()
         self.name = "Disposable Camera"
@@ -62,7 +62,7 @@ class itm_cam(Item):
         print(f"> 📸 You camera flash {target.name}, stunning them!")
         target.apply_condition(conditions["stunned"], duration = 3)
 
-class itm_juice(Item):
+class juice(Item):
     def __init__(self):
         super().__init__()
         self.name = "Juice Box"
@@ -74,7 +74,7 @@ class itm_juice(Item):
         player.pp = min(player.pp + heal, player.ppmax)
         print(f"> You slurp down the juice box and recover ⚡{heal} energy!")
 
-class itm_cigarette(Item):
+class cigarette(Item):
     def __init__(self):
         super().__init__()
         self.name = "Cigarette"
@@ -88,7 +88,7 @@ class itm_cigarette(Item):
         time.sleep(1.0)
         player.rebuff()
 
-class itm_soap(Item):
+class soap(Item):
     def __init__(self):
         super().__init__()
         self.name = "Soap Bar"
@@ -101,7 +101,7 @@ class itm_soap(Item):
         for enemy in enemies:
             enemy.apply_condition(conditions["soapy"], duration = random.randint(2,4))
 
-class itm_hobobomb(Item):
+class hobobomb(Item):
     def __init__(self):
         super().__init__()
         self.name = "Hobo Bomb"
@@ -116,7 +116,7 @@ class itm_hobobomb(Item):
 
 ##### debug items
 
-class itm_cancer(Item):
+class cancer(Item):
     def __init__(self):
         super().__init__()
         self.name = "Pure Liquid Cancer"

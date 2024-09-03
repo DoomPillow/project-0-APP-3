@@ -19,9 +19,9 @@ class Enemy:
         self.hitratio = 75 # % chance of hitting
 
         self.active_conditions = {}
-        self.moves = [
-            self.attack
-        ]
+        #self.moves = [
+        #    self.attack
+        #]
 
     def apply_condition(self, condition, duration):
         if condition.name in self.active_conditions:
@@ -41,10 +41,7 @@ class Enemy:
             time.sleep(1.0)    
 
     def make_turn(self, player):
-
-        _move = random.randint(0, len(self.moves) - 1)
-
-        self.moves[_move](player)
+        self.attack(player)
 
 
     def rebuff(self, player):
@@ -70,7 +67,7 @@ class Enemy:
             self.dead = True
             self.hp = 0 # just so hp doesn't go negative cuz that looks gross
             print(f"> 🪦  {self.name} drops dead!")
-            time.sleep(1.0)
+            time.sleep(0.3)
             if player.target == self:
                 player.target = None
             dead_enemies.append(self)
@@ -81,14 +78,9 @@ class Enemy:
 
 ############ SPECIFIC ENEMIES
 
-class Enemy_MrTran(Enemy):
+class MrTran(Enemy):
     def __init__(self):
         super().__init__("Mr Tran", 30)
-        self.moves = [
-            self.attack,
-            self.attack,
-            self.noxious_spray,
-        ]
 
     def noxious_spray(self, player):
         print("> Mr Tran sprays you with noxious chemicals!")
@@ -97,3 +89,69 @@ class Enemy_MrTran(Enemy):
             return
         player.apply_condition(conditions["poisoned"], 3)
         time.sleep(1.0)
+
+    def make_turn(self, player):
+        #super().make_turn(player)
+        self.attack(player)
+
+class DogAgent(Enemy):
+    def __init__(self, name):
+        super().__init__(name, 50)
+        self.hitratio = 90
+
+    def attack(self, player):
+        if random.randint(1, 100) <= self.hitratio:
+            dmg = random.randint(8, 15 + self.dmgbonus)
+            print(f"> {self.name} unloads bullets into you for {dmg} damage!!!")
+            player.hp -= dmg
+            time.sleep(1.0)
+        else:
+            print(f"> {self.name}'s gun is jammed.")
+            time.sleep(1.0)    
+
+    def make_turn(self, player):
+        self.attack(player)
+
+class Rat(Enemy):
+    def __init__(self, name):
+        super().__init__(name, 10)
+        self.hitratio = 70
+
+    def noxious_spray(self, player):
+        print("> Mr Tran sprays you with noxious chemicals!")
+        if player.has_condition("poisoned"):
+            self.attack(player)
+            return
+        player.apply_condition(conditions["poisoned"], 3)
+        time.sleep(1.0)
+
+    def idle(self):
+        messages = [
+            f"> {self.name} scuttles around doing rat things for a moment",
+            f"> {self.name} doesn't quite know where it is.",
+            f"> {self.name} sniffs you.",
+            f"> {self.name} wants to bite you but doesn't remember how.",
+            f"> {self.name} chases its own tail."
+        ]
+        print(messages[random.randint(0,len(messages) - 1)])
+        time.sleep(1.0)
+
+    def attack(self, player):
+        if random.randint(1, 100) <= self.hitratio:
+            dmg = random.randint(1, 2 + self.dmgbonus)
+            print(f"> {self.name} takes a chomp at you, for {dmg} damage!!!")
+            player.hp -= dmg
+            time.sleep(1.0)
+        else:
+            print(f"> {self.name} tries to chomp you... but misses!")
+            time.sleep(1.0)    
+
+    def make_turn(self, player):
+        #super().make_turn(player)
+        rando = random.randint(0,10)
+        if rando < 6:
+            self.attack(player)
+        else:
+            self.idle()
+
+

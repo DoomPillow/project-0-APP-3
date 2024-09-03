@@ -1,17 +1,19 @@
 import re
 import json
+from fight_test import begin_battle
 
 class DialogueTree:
-    def __init__(self, text_file=None):
+    def __init__(self, text_file=None, location=None):
         self.text = text_file or {}
         self.current_node = self.text
+        self.location = location
 
     @staticmethod
-    def load_from_file(file_path):
+    def load_from_file(file_path, location):
         with open(file_path, 'r') as file:
             dialogue_data = json.load(file)
 
-        return DialogueTree(dialogue_data)
+        return DialogueTree(dialogue_data, location)
 
     def find_node(self, msgid):
         # Stack to hold nodes to visit, initialized with the root node
@@ -19,15 +21,14 @@ class DialogueTree:
 
         # Iterate while there are nodes to visit
         while stack:
-            current_node = stack.pop()
-
+            _node = stack.pop()
             # Check if the current node has the desired msgid
-            if current_node.get("msgid") == msgid:
-                return current_node
+            if _node.get("msgid") == msgid:
+                return _node
 
             # If the current node has options, add them to the stack for further exploration
-            if "options" in current_node:
-                for option in current_node["options"].values():
+            if "options" in _node:
+                for option in _node["options"].values():
                     stack.append(option)
 
         # If no node with the given msgid is found, return None
@@ -42,7 +43,7 @@ class DialogueTree:
         if matches:
             # Step 2: Remove all command tags from the input text
             input_text = re.sub(tag_regex, '', input_text).strip()
-            print(f"\033[38;5;231m{input_text}")
+            print(f"\033[38;5;231m{input_text}\n")
 
             # Step 3: Process each command found in the text
             for match in matches:
@@ -52,18 +53,24 @@ class DialogueTree:
                     
                     case "warp":
                         self.current_node = self.find_node(int(args[1]))
-                        print("...")
+                        #print("...")
 
                     case "unlock":
                         self.find_node(int(args[1]))["locked"] = False
 
                     case "lock":
-                        self.find_node(int(args[1]))["locked"] = True
+                        if len(args) == 1:
+                            self.current_node["locked"] = True
+                        else:
+                            self.find_node(int(args[1]))["locked"] = True
+                    case "fight":
+                        fight_struct = self.location.fights[args[1]]
+                        begin_battle(fight_struct["enemies"], fight_struct["loot"])
                         
                     case _:
                         print(f"Unknown command: {args[0]}")
         else:
-            print(f"\033[38;5;231m{input_text}")
+            print(f"\033[38;5;231m{input_text}\n")
 
     def run(self):
         while True:
@@ -82,13 +89,14 @@ class DialogueTree:
                     color_code = "\033[38;5;231m"
                     if "found" in self.current_node["options"][option]:
                         if self.current_node["options"][option]["found"]:
-                            color_code = "\u001b[38;5;232m"
+                            color_code = "\033[38;5;232m"
                     print(f"{color_code}{index + 1}) {option}\033[38;5;231m")
                 print("")
 
                 valid_choice = False
                 while not valid_choice:
                     choice = input("\033[38;5;228mChoose an option: ")
+                    print("")
                     #print("\033[38;5;231m")
 
                     # Validate the user's choice and navigate to the selected option
@@ -106,13 +114,12 @@ class DialogueTree:
                         valid_choice = False
                         print("You need to enter a number. Try again")
             else:
-                print("zoobers")
                 break
 
         # Print the leaf node or ending node text
         #self.process_text(self.current_node["text"])
 
 path = "text adventure project/dialogue/"
-test_dialogue = DialogueTree.load_from_file(path + 'dialogue_002.json')
-print("\033[38;5;231m")
-test_dialogue.run()
+#test_dialogue = DialogueTree.load_from_file(path + 'dg_mrtran_001.json')
+#print("\033[38;5;231m")
+#test_dialogue.run()

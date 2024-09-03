@@ -1,0 +1,12 @@
+{
+    "text": "You crack open the double doors to the cafeteria. Usually this place would be bustling with people scrambling for PHS signature food product, but right now, it' eerily quiet in here. That is, until you hear an ear-piercing scream coming from behind the crusty doors to the kitchen.\n\n???: AAAAAGGHH! GET THESE THINGS AWAY FROM ME!",
+    "options": {
+        "Investigate the kitchen": {
+            "text": "You crack open the doors to the kitchen, and are immediately greeted by a terrible scene. Dirty cutlery and splattered piles of grey slop scattered across the room. Standing atop the sink is a terrified lady cowering from a swarm of rats hopping up and down trying to bite at her. Suddenly one of the rats turns their attention to you, points, and lets out a big screetch. The rest of the rats take notice as well, and they start heading for you. "
+        },
+        "Explore the room": {},
+        "I'm sure they'll be fine (leave)": {
+            "text": "You're a terrible human."
+        }
+    }
+}
