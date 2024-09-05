@@ -67,57 +67,60 @@ class DialogueTree:
                         fight_struct = self.location.fights[args[1]]
                         begin_battle(fight_struct["enemies"], fight_struct["loot"])
                         
+                    case "load":
+                        self.location.active_tree = self.location.dialogue_trees[args[1]]
+
                     case _:
                         print(f"Unknown command: {args[0]}")
         else:
             print(f"\033[38;5;231m{input_text}\n")
 
     def run(self):
-        while True:
-            # Process and print the text of the current node
-            self.process_text(self.current_node["text"])
+        # Process and print the text of the current node
+        self.process_text(self.current_node["text"])
 
-            # If the current node has options, display them and get user input
-            if "options" in self.current_node:
-                
-                available_options = [
-                    option for option in self.current_node["options"].keys()
-                    if not self.current_node["options"][option].get("locked", False)
-                ]
+        # If the current node has options, display them and get user input
+        if "options" in self.current_node:
+            
+            available_options = [
+                option for option in self.current_node["options"].keys()
+                if not self.current_node["options"][option].get("locked", False)
+            ]
 
-                for index, option in enumerate(available_options):
-                    color_code = "\033[38;5;231m"
-                    if "found" in self.current_node["options"][option]:
-                        if self.current_node["options"][option]["found"]:
-                            color_code = "\033[38;5;232m"
-                    print(f"{color_code}{index + 1}) {option}\033[38;5;231m")
+            for index, option in enumerate(available_options):
+                color_code = "\033[38;5;231m"
+                if "found" in self.current_node["options"][option]:
+                    if self.current_node["options"][option]["found"]:
+                        color_code = "\033[38;5;232m"
+                print(f"{color_code}{index + 1}) {option}\033[38;5;231m")
+            print("")
+
+            valid_choice = False
+            while not valid_choice:
+                choice = input("\033[38;5;228mChoose an option: ")
                 print("")
+                #print("\033[38;5;231m")
 
-                valid_choice = False
-                while not valid_choice:
-                    choice = input("\033[38;5;228mChoose an option: ")
-                    print("")
-                    #print("\033[38;5;231m")
-
-                    # Validate the user's choice and navigate to the selected option
-                    try:
-                        choice_index = int(choice) - 1
-                        if 0 <= choice_index < len(available_options):
-                            valid_choice = True
-                            selected_option = available_options[choice_index]
-                            self.current_node = self.current_node["options"][selected_option]
-                            self.current_node["found"] = True
-                        else:
-                            valid_choice = False
-                            print("That's not an option. Try again.")
-                    except ValueError:
+                # Validate the user's choice and navigate to the selected option
+                try:
+                    choice_index = int(choice) - 1
+                    if 0 <= choice_index < len(available_options):
+                        valid_choice = True
+                        selected_option = available_options[choice_index]
+                        self.current_node = self.current_node["options"][selected_option]
+                        self.current_node["found"] = True
+                    else:
                         valid_choice = False
-                        print("You need to enter a number. Try again")
-            else:
-                break
+                        print("That's not an option. Try again.")
+                except ValueError:
+                    valid_choice = False
+                    print("You need to enter a number. Try again")
+        else:
+            #self.location.active_tree = None
+            return
 
-        # Print the leaf node or ending node text
-        #self.process_text(self.current_node["text"])
+    # Print the leaf node or ending node text
+    #self.process_text(self.current_node["text"])
 
 path = "text adventure project/dialogue/"
 #test_dialogue = DialogueTree.load_from_file(path + 'dg_mrtran_001.json')

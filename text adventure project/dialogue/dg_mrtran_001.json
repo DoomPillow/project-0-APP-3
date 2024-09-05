@@ -1,5 +1,5 @@
 {
-    "text": "Mr. Tran: Okay, I’m ready now. What do you need?",
+    "text": "Mr Tran: Okay, I’m ready now. What do you need?",
     "options": {
         "I need a schedule": {
             "text": "Mr Tran rubs the sleep off his eyes and looks at you, perplexed.\n\nMr Tran: Huh? Why don't you have one? Registration was two days ago. You should have one already.\n\nYou tell him that you went to registration, and all they did was shrug and tell you to go home.\n\nMr Tran: Hmmm. Don't worry, I can solve that no problem.\nLet me just pull up your schedule on Aeries here.... one moment.... there! Here you go!\n\nHe pulls open a drawer in his desk and takes out a big red crayon. He then flips over some paper already on his desk and scribbles a schedule onto it. After quickly giving it to you, he begins to lean back and return to his slumber.[unlock 2]",
@@ -32,7 +32,8 @@
             "text": "Mr Tran: What did I do to deserve this?[warp 1]"
         },
         "(leave)": {
-            "text": ""
+            "text": "",
+            "locked": true
         },
         ">fake schedule<": {
             "text": "",
@@ -45,7 +46,7 @@
                             "text": "Mr Tran: Well, you see, that's all up to perspective, now isn't it? Apparently it's very hard for YOU to get your schedule, hence why you're coming to me. And what I'm telling you is that you need to get me a coffee. Got it?[lock 9][warp 8]"
                         },
                         "You know what, fine. I'll get you a coffee.": {
-                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and goat cream, but I'm not picky."
+                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and goat cream, but I'm not picky. [load admin]"
                         },
                         "I'm not getting you a coffee.": {
                             "text": "Mr Tran: What a shame. Y'know I really wanted to get you your schedule and everything, but I guess that's just not happening.\n\nMr Tran makes a super exaggerated pouty face as he says this.[lock 9][warp 8]"
