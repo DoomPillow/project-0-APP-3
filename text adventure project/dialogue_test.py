@@ -51,6 +51,9 @@ class DialogueTree:
                 args = _match.split(' ')
                 match (args[0]):
                     
+                    case "item":
+                        print("> You got 💊 \033[38;5;226mpainkillers\033[38;5;231m!")
+
                     case "warp":
                         self.current_node = self.find_node(int(args[1]))
                         #print("...")

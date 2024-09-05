@@ -1,7 +1,41 @@
 {
-    "text": "You get up from the couch with your newfound quest: get Mr Tran a cup of coffee. You feel a little ashamed that your life has come to this, but if this is what you need to get your schedule, so be it.",
+    "text": "You get up from the couch with your newfound quest: get Mr Tran a cup of coffee. You feel a little ashamed that your life has come to this, but if this is what you need to get your schedule, so be it.\n\nYou take a look around the room. It's pretty barebones. On the wall is a number of certificates and plaques hung up. Looking back, you see Mr Tran has once again returned to sleep at his desk. Next to which is a small plastic trash can. To your right is the door leading out of the room",
+    "msgid": 1,
     "options": {
-        "asdsajddiaas": {
+        "talk to Mr Tran": {
+            "text": "hork hork hork hork horkh rohkr ohkroh kohoktok"
+        },
+        "Look at the plaques": {
+            "text": "hork hork hork hork horkh rohkr ohkroh kohoktok"
+        },
+        "Investigate the trash can": {
+            "text": "You go up to the trash can and take a look inside. It's a trash can. There isn't really anything special about it. There's maybe some crumpled up paper and some pencil shavings, but nothing of note.[warp 1][lock][unlock 2]"
+        },
+        "Dig around in the trash can": {
+            "text": "You go up to the trash can and... and you reach your hand into it and begin rummaging around. All you feel is crumpled paper and other miscellaneous office detritus. You get the idea this is a waste of time.",
+            "msgid": 2,
+            "locked": true,
+            "options": {
+                "deeper": {
+                    "text": "You reach deeper into the trash can, to where your whole forarm is completely submerged, and continue scrounging around. Towards the bottom of the trash can, things remain to be about the same. Although the crumpled paper balls feel greasier than they did before. It also feels like everything is coated in metal shavings.",
+                    "options": {
+                        "DEEPER!": {
+                            "text": "You reach even deeper into the trash can. Your whole arm is now reaching inside it, and you feel like your hand is even further into down than the trash can is tall. Your hand plunges through the viscous surface of some pool of oil. Reaching further down, you finally get a feeling of an object that might be worth of note. You grab onto it, and pull it out of the trash can. You wipe off the grease, and see its a bottle of little red and yellow pills labeled \"Carfentanil\". [lock][unlock 3][item]"
+                        },
+                        "stop": {
+                            "text": "In a brief moment of clarity, you realize what your doing is stupid and gross, and you return to the task at hand. "
+                        }
+                    }
+                },
+                "stop": {
+                   "text": "You pull your hand out of the dirty trash can, and get back to the task at hand.[warp 1]" 
+                }
+            }
+        },
+        "Look in the trash can again": {
+            "text": "There's nothing for you here.[warp 1]"
+        },
+        "Leave": {
             "text": "hork hork hork hork horkh rohkr ohkroh kohoktok"
         }
     }

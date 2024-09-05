@@ -45,15 +45,8 @@
                         "How hard is it to just get my schedule?": {
                             "text": "Mr Tran: Well, you see, that's all up to perspective, now isn't it? Apparently it's very hard for YOU to get your schedule, hence why you're coming to me. And what I'm telling you is that you need to get me a coffee. Got it?[lock 9][warp 8]"
                         },
-                        "You know what, fine. I'll get you a coffee.": {
-                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and goat cream, but I'm not picky. [load admin]"
-                        },
                         "I'm not getting you a coffee.": {
                             "text": "Mr Tran: What a shame. Y'know I really wanted to get you your schedule and everything, but I guess that's just not happening.\n\nMr Tran makes a super exaggerated pouty face as he says this.[lock 9][warp 8]"
-                        },
-                        "Sure thing! How do you like your coffee?": {
-                            "text": "Mr Tran: Now THAT's what I like to hear! You're one of the good ones. Y'know, if you're lucky, I might just add you to the NHS email list. But don't get too excited. I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.",
-                            "msgid": 9
                         },
                         "Can't you get the coffee yourself?": {
                             "text": "Mr Tran: What coffee? I don't see any coffee.\n\nMr Tran looks around the room with a confused expression and exaggerated hand motions.[lock 9]",
@@ -91,6 +84,13 @@
                                     }
                                 }
                             }
+                        },
+                        "You know what, fine. I'll get you a coffee.": {
+                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and goat cream, but I'm not picky. [load admin]"
+                        },
+                        "Sure thing! How do you like your coffee?": {
+                            "text": "Mr Tran: Now THAT's what I like to hear! You're one of the good ones. Y'know, if you're lucky, I might just add you to the NHS email list. But don't get too excited. I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.",
+                            "msgid": 9
                         }
                     }
                 }
