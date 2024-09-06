@@ -14,6 +14,10 @@ class Admin(Location):
 
         self.active_tree = None
 
+        self.checks = {
+            "bogem": True
+        }
+
         self.dialogue_trees = {
             "default": DialogueTree.load_from_file(path + 'admin/mr_tran_opening.json', self),
             "mr_tran_room": DialogueTree.load_from_file(path + 'admin/mr_tran_room.json', self),

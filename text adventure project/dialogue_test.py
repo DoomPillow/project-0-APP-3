@@ -51,6 +51,9 @@ class DialogueTree:
                 args = _match.split(' ')
                 match (args[0]):
                     
+                    case "check":
+                        self.location.checks[args[1]] = True
+
                     case "item":
                         print("> You got 💊 \033[38;5;226mpainkillers\033[38;5;231m!\n")
 
@@ -100,8 +103,15 @@ class DialogueTree:
             
             available_options = [
                 option for option in self.current_node["options"].keys()
-                if not self.current_node["options"][option].get("locked", False)
+                if not (
+                    # Check if "locked" is present and it's True
+                    self.current_node["options"][option].get("locked", False) == True 
+                    # Check if "locked" is a string, and the corresponding value in "checks" is True
+                    or isinstance(self.current_node["options"][option].get("locked"), str)
+                    and not self.location.checks.get(self.current_node["options"][option]["locked"], True)
+                )
             ]
+
 
             for index, option in enumerate(available_options):
                 color_code = "\033[38;5;231m"

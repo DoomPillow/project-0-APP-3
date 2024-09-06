@@ -31,10 +31,6 @@
         "You suck, eat my pant.": {
             "text": "Mr Tran: What did I do to deserve this?[warp 1]"
         },
-        "(leave)": {
-            "text": "",
-            "locked": true
-        },
         ">fake schedule<": {
             "text": "",
             "options": {
