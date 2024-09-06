@@ -68,7 +68,9 @@ class DialogueTree:
                             self.find_node(int(args[1]))["locked"] = True
                     case "fight":
                         fight_struct = self.location.fights[args[1]]
-                        begin_battle(fight_struct["enemies"], fight_struct["loot"])
+                        input("\x1b[31;1mPress ENTER to continue...\x1b[0m\033[38;5;231m")
+                        self.current_node = self.current_node["options"][begin_battle(fight_struct["enemies"], fight_struct["loot"])]
+                        return True
                         
                     case "load":
                         self.location.active_tree = self.location.dialogue_trees[args[1]]
@@ -77,10 +79,21 @@ class DialogueTree:
                         print(f"Unknown command: {args[0]}")
         else:
             print(f"\033[38;5;231m{input_text}\n")
+        
+        return False
+    
 
     def run(self):
+
+        # In case process text needs to be ran multiple times due to warping or loading or whatnot
+        resetty = True
+
         # Process and print the text of the current node
-        self.process_text(self.current_node["text"])
+        while resetty:
+            if self.current_node["text"] != "":
+                resetty = self.process_text(self.current_node["text"])
+            else:
+                resetty = False
 
         # If the current node has options, display them and get user input
         if "options" in self.current_node:
@@ -121,9 +134,6 @@ class DialogueTree:
         else:
             #self.location.active_tree = None
             return
-
-    # Print the leaf node or ending node text
-    #self.process_text(self.current_node["text"])
 
 path = "text adventure project/dialogue/"
 #test_dialogue = DialogueTree.load_from_file(path + 'dg_mrtran_001.json')

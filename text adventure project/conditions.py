@@ -44,6 +44,22 @@ def remove_poisoned(target):
     time.sleep(1)
 
 
+def apply_fire(target):
+    if "🔥" not in target.emojo:
+        target.emojo += "🔥"
+    else:
+        target.hp -= 1
+        print(f"> 🔥 {target.name} takes 1 damage from the fire!")
+        time.sleep(0.8)
+
+
+def remove_fire(target):
+    if "🔥" in target.emojo:
+        target.emojo = target.emojo.replace('🔥', '')
+        print(f"> {target.name} is no longer on fire!")
+        time.sleep(1)
+
+
 def apply_stunned(target):
     if "💫" not in target.emojo:
         target.emojo += "💫"
@@ -72,6 +88,7 @@ def remove_soapy(target):
 conditions = {
     "angry": Condition("angry", apply_effect=apply_angry, remove_effect=remove_angry),
     "poisoned": Condition("poisoned", apply_effect=apply_poisoned, remove_effect=remove_poisoned, reapply = True),
+    "fire": Condition("fire", apply_effect=apply_fire, remove_effect=remove_fire, reapply = True),
     "stunned": Condition("stunned", apply_effect=apply_stunned, remove_effect=remove_stunned),
     "soapy": Condition("soapy", apply_effect=apply_soapy, remove_effect=remove_soapy),
 }

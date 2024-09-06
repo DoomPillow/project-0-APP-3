@@ -51,6 +51,17 @@ class bandaid(Item):
         player.hp = min(player.hp + heal, player.hpmax)
         print(f"> You slap a bandaid on your gushing wounds, and recover ❤️ {heal} hp!")
 
+class burger(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Burger"
+        self.emojo = "🍔"
+        self.description = "Homemade! Heals you fully."
+    
+    def use(self, target, player, enemies):
+        player.hp = player.hpmax
+        print(f"> You gorge down the burger, and heal back up to ❤️ {player.hpmax} hp!")
+
 class cam(Item):
     def __init__(self):
         super().__init__()

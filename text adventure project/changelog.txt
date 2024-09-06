@@ -35,7 +35,7 @@
 - Added a death ascii message, and a win ascii message with a temporary loot message
 - Added cancer and nuke items purely for debugging. Useful for instantly killing the player or all the enemies.
 
-#### v0.2
+#### v0.20
 
 - Created a dialogue tree system with functionality for locking and unlocking messages, as well as warping to other nodes
 - Dialogue is loaded from json files.
@@ -43,4 +43,12 @@
 - Player can now suffer from conditions as well (although wording is a bit strange for some of the console messages from conditions)
 - Mr Tran intro dialogue is now mostly if not fully complete.
 - AI was used to create the function for searching through the nodes to find the node with the given message ID
-- 
+ 
+#### v0.30
+
+- Location class now works.
+- added [load] in-text command for going between dialogue trees
+- added [fight] in-text command for starting fights, along with functionality for going to different nodes depending on the outcome of the fight
+- Mr Chen, rat, and D.O.G agent enemies were added
+- Added burger, cigarette, hobo bomb, and milk carton items. 
+- Fixed some text being skipped over when it shouldn't've been. 

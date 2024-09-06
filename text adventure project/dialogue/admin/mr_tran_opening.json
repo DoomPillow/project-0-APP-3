@@ -43,9 +43,11 @@
                     "msgid": 8,
                     "options": {
                         "How hard is it to just get my schedule?": {
+                            "msgid": 13,
                             "text": "Mr Tran: Well, you see, that's all up to perspective, now isn't it? Apparently it's very hard for YOU to get your schedule, hence why you're coming to me. And what I'm telling you is that you need to get me a coffee. Got it?[lock 9][warp 8]"
                         },
                         "I'm not getting you a coffee.": {
+                            "msgid": 14,
                             "text": "Mr Tran: What a shame. Y'know I really wanted to get you your schedule and everything, but I guess that's just not happening.\n\nMr Tran makes a super exaggerated pouty face as he says this.[lock 9][warp 8]"
                         },
                         "Can't you get the coffee yourself?": {
@@ -79,17 +81,25 @@
                                             "text": "Mr Tran: *phew*... good. Now, where were we?[warp 8]"
                                         },
                                         "DO IT, coward": {
-                                            "text": "A bead of sweat runs down the side of mr trans head as he pushes down on the on button of the walkie-talkie, and begins screaming an ear-piercing bird call that reverberates throughout the entire room. Within seconds, the doors to the room burst open, and six armed men with suits and sunglasses on rush in and surround you.\n\nD.O.G Agents(in unison): You've woofed your last bulldog. Prepare to die.[fight dog_agents]"
+                                            "text": "A bead of sweat runs down the side of mr trans head as he pushes down on the on button of the walkie-talkie, and begins screaming an ear-piercing bird call that reverberates throughout the entire room. Within seconds, the doors to the room burst open, and six armed men with suits and sunglasses on rush in and surround you.\n\nD.O.G Agents(in unison): You've woofed your last bulldog. Prepare to die.[fight dog_agents]",
+                                            "options": {
+                                                "WIN": {
+                                                    "text": "Mr Tran dies from high glucose levels and you win. Good job!!!"
+                                                },
+                                                "LOSE": {
+                                                    "text": "You lie on the ground, bloody, and ridden with bullet holes. The D.O.G agents quickly file out of the room. All who's left is Mr Tran, who is quickly trying to regain his composure.\n\nMr Tran: Now, where were we?[warp 8][lock 13][lock 14][lock 6]"
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
                         },
                         "You know what, fine. I'll get you a coffee.": {
-                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and goat cream, but I'm not picky. [load admin]"
+                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room]"
                         },
                         "Sure thing! How do you like your coffee?": {
-                            "text": "Mr Tran: Now THAT's what I like to hear! You're one of the good ones. Y'know, if you're lucky, I might just add you to the NHS email list. But don't get too excited. I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.",
+                            "text": "Mr Tran: Now THAT's what I like to hear! You're one of the good ones. Y'know, if you're lucky, I might just add you to the NHS email list. But don't get too excited. I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room]",
                             "msgid": 9
                         }
                     }

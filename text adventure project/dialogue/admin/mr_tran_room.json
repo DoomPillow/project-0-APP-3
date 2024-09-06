@@ -1,0 +1,69 @@
+{
+    "text": "You get up from the couch with your newfound quest: get Mr Tran a cup of coffee. You feel a little ashamed that your life has come to this, but if this is what you need to get your schedule, so be it.\n\nYou take a look around the room. It's pretty barebones. On the wall is a number of awards. Looking back, you see Mr Tran has once again returned to sleep at his desk. Next to which is a small plastic trash can. To your right is the door leading out of the room",
+    "msgid": 1,
+    "options": {
+        "talk to Mr Tran": {
+            "text": "Mr Tran, once again, awakes from his slumber to begrudgingly speak to you.\n\nMr Tran: What is it?",
+            "msgid": 4,
+            "options": {
+               "Where do I get a coffee?" : {
+                    "text": "Mr Tran: I dunno, the cafeteria probably has something? Just find it and bring it here. It really shouldn't be that hard.[warp 4]"
+               },
+               "why were there painkillers in your trash Mr Tran?": {
+                    "locked": true,
+                    "msgid": 5,
+                    "text": "Mr Tran: You think it's easy being a counselor? You think it's easy to spend hundreds of hours every day, grueling away at this god-forsaken school, talking to gross high-schoolers like you? It's pure, unadulterated, suffering. The only reason I threw those painkillers away is because they weren't strong enough.[warp 4]"
+               },
+               "I'm done talking to you. (leave)": {
+                    "text": "Mr Tran: Hooray.\n\nMr tran reclines back in his chair and lowers the sleeping mask back over his eyes.[warp 1]"
+               }
+            }
+        },
+        "Look at the awards": {
+            "text": "The wall is adorned with various certificates, awards, and plaques of past accomplishments. One of them is written in rainbow comic sans, and was awarded to Mr Tran for \"PHS Record of 5 students counseled in one month!\" back in 1989. Another certificate reads \"Counselor of the year award 2022.\" that textis the name Mr Tran written in sharpie. It looks like it was written over another name that was printed on the sheet. The other awards are equally uninteresting.[warp 1]"
+        },
+        "Investigate the trash can": {
+            "text": "You go up to the trash can and take a look inside. It's a trash can. There isn't really anything special about it. There's maybe some crumpled up paper and some pencil shavings, but nothing of note.[lock][unlock 2][warp 1]"
+        },
+        "Dig around in the trash can": {
+            "text": "You go up to the trash can and you reach your hand into it and begin rummaging around. All you feel is crumpled paper and other miscellaneous office detritus. You get the idea this is a waste of time.",
+            "msgid": 2,
+            "locked": true,
+            "options": {
+                "deeper": {
+                    "text": "You reach deeper into the trash can, to where your whole forarm is completely submerged. Towards the bottom of the trash can, things remain to be about the same. Although the crumpled paper feels greasier than it did before. You also notice that everything feels like it's covered in oily metal shavings.",
+                    "options": {
+                        "DEEPER!": {
+                            "text": "You reach even deeper into the trash can. Your whole arm is now reaching inside it, and you feel like your hand is even further down the trash can than the trash can is tall. Your hand plunges through the viscous surface of some pool of grease. It's a sensory nightmare. The feeling alone of rummaging through the crud is enough to make you gag. Reaching further down, you finally get a feeling of an object that could be something interesting. You grab onto it, and pull it out of the layers upon layers of disgusting. You wipe off the grease, and see its a bottle of little red and yellow pills labeled \"Carfentanil\".[lock 2][unlock 3][unlock 5][item][warp 1]"
+                        },
+                        "stop": {
+                            "text": "In a brief moment of clarity, you realize what your doing is stupid and gross, and you return to the task at hand.[warp 1]"
+                        }
+                    }
+                },
+                "stop": {
+                   "text": "You pull your hand out of the dirty trash can, and get back to the task at hand.[warp 1]" 
+                }
+            }
+        },
+        "Look in the trash can again": {
+            "text": "There's nothing for you here.[warp 1]",
+            "locked": true,
+            "msgid": 3
+        },
+        "Leave": {
+            "text": "You open the door out of the counselors office and back into PHS proper. Stepping into the hallway, you are presented with a choice.",
+            "options": {
+                "Go right, toward the center quad": {
+                    "text": "You walk down the hallway toward the center quad. You just about reach the main reception area before you feel a tap on your shoulder.\n\n???: Hey! Gimme all your money!\n\nYou turn around, to see none other than Mr Chen sizing you up.\n\nMr Chen: I'm not bluffing![load mr_chen_hallway]"
+                },
+                "Go left, toward the lunch area": {
+                    "text": "You decide to go toward the lunch area. You almost make it to the doors at the end of the hallway, before they swing open with enough speed to crack the walls. You're then immediately hit with a flash of blinding light emanating from the doors, only being able to make out the vague dark silhouette of a person standing in the doorway.\n\n???: Gimme all your money!\n\nYour eyes readjust to your surroundings, and you see Mr Chen standing before you, with a lit cigarette in his mouth, and dark sunglasses perched on his face.\n\nMr Chen: I'm not bluffing![load mr_chen_hallway]"
+                }, 
+                "choices are scary, go back to Mr Tran": {
+                    "text": "You decide this hallway isn't for you, and your future resides only in the beige glory of Mr Tran's office.[warp 1]"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "text": "Before you is the boundless, idyllic beauty of the PHS Eastern Quad. Various metal tables dot the area, all painted a patriotic bulldog-red. The glourious statue of Biggy D lies in the center of the quad. To the right is the entrance to the cafeteria, as well as the gates to the Garden. To your left, you see a stand set up by the military, where two people dressed up in camo gear stand. Further up the quad, you see someone relaxing on a colorful deckchair, beneath a bright blue and pink sun umbrella. Upon further inspection, you see that person to be Mr Tran.",
+    "options": {
+        "Go to the cafeteria": {
+            "text": ""
+        },
+        "Talk to the military people": {
+            "text": ""
+        },
+        "Go to the Biggy D statue": {
+            "text": ""
+        },
+        "Go to the garden": {
+            "text": ""
+        },
+        "Go to Mr Tran": {
+            "text": ""
+        },
+        "Go to the Admin Building": {
+            "text": ""
+        },
+        "Go to the center quad": {
+            "text": ""
+        }
+    }
+}

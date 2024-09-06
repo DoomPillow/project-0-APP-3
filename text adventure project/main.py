@@ -1,5 +1,5 @@
 
-from locations import locations
+from locations import locations, current_location
 
 print("""
       
@@ -59,6 +59,6 @@ print("\nMr. Tran lifts up a finger, and spends almost a full minute taking deep
 input("\nPress Enter to continue...")
 
 
-locations["admin"].active_tree = locations["admin"].dialogue_trees["default"]
-while locations["admin"].active_tree != None:
-    locations["admin"].active_tree.run()
+current_location.active_tree = current_location.dialogue_trees["default"]
+while current_location.active_tree != None:
+    current_location.active_tree.run()

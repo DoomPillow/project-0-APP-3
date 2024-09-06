@@ -1,0 +1,125 @@
+{
+    "text": "",
+    "msgid": 1,
+    "options": {
+        "Mr Chen?" : {
+            "text": "Mr Chen: Mr Chen? Who's that!? I'm the school bully! And you better cough up some cash, or I'm gonna... I'm gonna smack you!\n\nMr Chen smugly takes a puff off a cigarette, and turns back to you\n\nMr Chen: So where is it!? Huh!? Huh!? I better be seein' some money comin' out of those pockets![lock][warp 1][unlock 2]"
+        },
+        "Since when were you the school bully?" : {
+            "text": "Mr Chen: The district doesn't pay me squat! I've resorted to mugging students for my wage. And you better pay up!\n\nMr Chen takes a fat rip from his vape and blows the vapors in your face.[lock][warp 1][unlock 3][unlock 4]",
+            "locked": true,
+            "msgid": 2
+        },
+        "I feel like we can sort this out civilly": {
+            "text": "Mr Chen: NO!! I'M THE BULLY! AND I GET WHAT I WANT! YOU BETTER START SPITTING UP SOME DIMES OR I'M GONNA GET EVEN MORE ANGRY!\n\nMr Chen angrily takes a hit from his bong.",
+            "locked": true,
+            "msgid": 3,
+            "options": {
+                "Okay! okay! I'll give you my money": {
+                    "text": "Mr Chen: Yeahh!.. ughh... hm. This feels kind of off. Am I doing this bullying thing right?",
+                    "msgid": 12,
+                    "options": {
+                        "You're doing great Mr Chen!": {
+                            "text": "Mr Chen: Thank you! Wait... YOU'RE SUPPOSED TO BE SCARED! IF YOU AREN'T SCARED I'M GONNA MAKE YOU SCARED![warp 5][fight mr_chen]"
+                        },
+                        "Maybe bullying just isn't for you": {
+                            "text": "Mr Chen: SHUT UP!!! I'M THE BEST BULLY IN THE WORLD!!!\n\nMr Chen starts tearing up from your harsh words.\n\nMr Chen: I'LL SHOW YOU HOW GOOD A BULLY I AM![warp 5][fight mr_chen]"
+                        },
+                        "I think Bullies usually beat people up": {
+                            "text": "Mr Chen: Oh, yes. Good idea!\n\nMr Chen then breaks the sound barrier as he lunges toward you with the ferocity of a wild dog.[warp 5][fight mr_chen]"
+                        },
+                        "You gotta be more aggresive": {
+                            "text": "Mr Chen: Like this?\n\nMr Chen's entire face turns red as he begins to scream a deafening war-cry. He then dawns his brass knuckles and lunges toward you.[warp 5][fight mr_chen]"
+                        }
+                    }
+                },
+                "I don't even have any money!": {
+                    "text": "Mr Chen: No money!? HA! POOR! You're a brokie! Little brokie gonna cry?\n\nHis face contorts into a grin, revealing a row of golden teeth. He then takes out a big cigar and takes a puff out of it.\n\nMr Chen: You are gonna learn to always carry money around Mr Chen's toll road![warp 5][fight mr_chen]"
+                },
+                "Sorry, no money for you Mr Chen": {
+                    "text": "Mr Chen: You'll regret the day you didn't pay the Mr Chen toll!![warp 5][fight mr_chen]"
+                }
+            }
+        },
+        "I can just give you some money": {
+            "msgid": 4,
+            "locked": true,
+            "text": "Mr Chen: That's not how this works! I bully you and you give me money! Be scared!\n\nMr chen tries his best to intimidate you has he takes a hit from his modded asthma inhaler.[lock]",
+            "options": {
+                "C'mon, I'll give you some money": {
+                    "text": "Mr Chen: No! NO! NOOO!!!\n\nMr Chen pulls his hands out of his pockets, revealing his two brass knuckles.\n\nMr Chen: I'm gonna make you regret ever complying with me![warp 5][fight mr_chen]"
+                },
+                "Fine...": {
+                    "text": "Mr Chen: And don't you dare try that again!!![warp 1]"
+                }
+            }
+        },
+        "I'm not giving you my money": {
+            "text": "Mr Chen: Then I'll rip your throat out!!!\n\nMr Chen bears his claws and lunges at you like a rabid squirrel.[warp 5][fight mr_chen]"
+        }, 
+        "OKAY! PLEASE DON'T HURT ME!" : {
+            "text": "Mr Chen: Yeah! Get scared!",
+            "options": {
+                "AAAAAAUUGH!!!!": {
+                    "text": "Mr Chen starts grinning and clapping like a jolly little baby at the sight of your fear. You get the idea this might be the first time he's actually been able to intimidate someone.\n\nMr Chen: Yeah! Yeah! I'm the bully and your gonna give me your money!",
+                    "options": {
+                        "TAKE IT! TAKE MY MONEY!": {
+                            "text": "As you yell that, you toss all of your loose coins onto the ground, scattering all across the hallway. Mr Chen looks on in dissapointment.\n\nMr Chen: Hmm. That felt to easy. Am I doing this bullying thing right?[warp 12]"
+                        },
+                        "AAAAAAAAAAUUUUUUUUUUUUGGGGGGGGGGGHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!": {
+                            "text": "Mr Chen: OW! Stop that! You're hurting my ears!!",
+                            "options": {
+                                "(keep screaming)": {
+                                    "text": "Mr Chen: You little cretin!! If you won't stop, I'll make you stop![warp 5][fight mr_chen]"
+                                },
+                                "okay": {
+                                    "text": "Mr Chen: Wait... now you're not scared again. You know what, I'm sick of this! I'm gonna take your money myself![warp 5][fight mr_chen]"
+                                }
+                            }
+                        }
+                    }
+                },
+                "uhh.. aagh?": {
+                    "text": "Mr Chen's smug grin turns to pure sorrow at the sight of your change in attitude. You get the idea this was the first time his intimidation tactic was actually working.\n\nMr Chen: Wait-- no! What are you doing? Keep being scared of me!\n\nMr Chen hisses and lunges at you with his brass knuckles.[warp 5][fight mr_chen]"
+                },
+                "wait, do you want my money or do you want to scare me?": {
+                    "text": "Mr Chen: Uughghh- uuuhhhhh!! I don't know!!!\n\nMr Chen breaks down into tears and begins sobbing on the floor.",
+                    "options": {
+                        "Hey man, it's okay. Bullying just isn't for everyone": {
+                            "text": "Mr Chen: BUT IT IS FOR ME!!! DIE!!![warp 5][fight mr_chen]"
+                        },
+                        "(silently walk away)": {
+                            "text": "You begin slowly walking away toward the end of the hallway. You open the door to the outside world, take one look back, and see Mr Chen in the fetal position on the ground, loudly weeping in a puddle of his own tears. You slowly close the door, and forget that this had ever happened."
+                        }
+                    }
+                }
+            }
+        },
+        "You messed with the wrong bulldog, chump": {
+            "text": "Mr Chen: Oh yeah?! Lets find out![warp 5][fight mr_chen]"
+        },
+        "CHEN BATTLE": {
+            "text": "",
+            "msgid": 5,
+            "locked": true,
+            "options": {
+                "WIN": {
+                    "text": "Mr Chen dissolves into a gooey puddle. It's nougatty and delicious!",
+                    "options": {
+                        "FEAST! FEAST! FEAST!": {
+                            "text": "YUM YUM YUM YUM YUM YUM YUM YUM YUM YUM YUM"
+                        }
+                    }
+                },
+                "LOSE": {
+                    "text": "Mr Chen grabs you and slams you in the ground head-first, crushing your cabeza like a spoiled pumpkin.",
+                    "options": {
+                        "This is not the ending I desired": {
+                            "text": "TOO BAD"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

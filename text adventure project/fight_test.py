@@ -1,66 +1,8 @@
 import time
 import random
-import items as itm
+from enemies import dead_enemies
 from conditions import conditions
-from enemies import Enemy, dead_enemies, MrTran, Rat
-
-##### Player Class
-class Player:
-    def __init__(self):
-        self.emojo = "❤️"
-        self.name = "You"
-        self.hpmax = 25
-        self.hp = self.hpmax
-        self.ppmax = 50
-        self.pp = self.ppmax
-        self.active_conditions = {}
-        self.inventory = [
-            itm.bomb(),
-            itm.bandaid(), 
-            itm.cam(), 
-            itm.juice()
-        ]
-
-        self.target = None
-
-        self.dmgbonus = 0
-        #self.hitratio = 90 # % chance of hitting. currently doesn't do anything for the player
-
-    # Gives player buffs/debuffs
-    def apply_condition(self, condition, duration):
-        if condition.name in self.active_conditions:
-            self.active_conditions[condition.name] += duration
-        else:
-            self.active_conditions[condition.name] = duration
-            condition.apply(self)
-
-    # Manages active player buffs/debuffs
-    def rebuff(self):
-
-        ## Remove conditions with expired cooldowns
-        expired_conditions = []
-
-        for condition_name, duration in self.active_conditions.items():
-            self.active_conditions[condition_name] = max(duration - 1, 0)
-            
-            if self.active_conditions[condition_name] <= 0:
-                expired_conditions.append(condition_name)
-            
-            # If condition is not expired, apply its effects
-            elif conditions[condition_name].reapply:
-                conditions[condition_name].apply(self)
-                
-
-        for condition_name in expired_conditions:
-            condition = conditions[condition_name]
-            condition.remove(self)
-            del self.active_conditions[condition_name]
-
-    def has_condition(self, condition_name):
-        return self.active_conditions.get(condition_name, 0) > 0
-
-## Shouldn't be initialized in this file, but is here for now
-player = Player()
+from player import player
 
 ## Would be supplied from the location variables in an actual in-game fight
 #enemies = [Enemy_Rat("Scruffy rat"), Enemy_Rat("Dirty rat"), Enemy_Rat("Long rat"), Enemy_Rat("Slimy rat"), Enemy_Rat("Normal rat"), Enemy_Rat("Furry rat")]
@@ -70,9 +12,9 @@ def check_for_outcome(enemies):
     outcome = "ongoing"
     
     if player.hp <= 0:
-        outcome = "playerlose"
+        outcome = "LOSE"
     if len(enemies) == 0:
-        outcome = "playerwin"
+        outcome = "WIN"
     return outcome
 
 ### 
@@ -135,8 +77,7 @@ def begin_battle(enemies, loot):
     - ability [ability #]   : uses the given ability
     - inventory             : gives a list of the items in your inventory
     - examine [item name]   : tells you about the given item
-    - use [item name]       : uses the given item
-    - flee                  : you run away like a pansy""")  
+    - use [item name]       : uses the given item""")  
                     # Change the targeted enemy
                     case "target":
                         target_name = " ".join(action).replace("target ", "")
@@ -167,13 +108,11 @@ def begin_battle(enemies, loot):
                     # list off special moves
                     case "abilities":
                         print("""
-        1 | Power Stance    : ⚡ 0 Recover a small amount of energy
-        2 | Defend          : ⚡ 5 Try to defend yourself from incoming attacks
-        3 | Bulldog Beating : ⚡ 15 A strong attack that's likely to miss
-        4 | Taunt           : ⚡ 10 Angers an opponent, making them less likely to hit you, but deal more damage
-        5 | Ptooie          : ⚡ 15 you spit on your opponent, poisoning them for five rounds
-        6 | Headbutt        : ⚡ 20 A strong attack with a chance to stun for one round
-                        """)
+1 | Power Stance    : ⚡ 0 Recover a small amount of energy
+2 | Defend          : ⚡ 5 Try to defend yourself from incoming attacks
+3 | Bulldog Beating : ⚡ 15 A strong attack that's likely to miss
+4 | Ptooie          : ⚡ 15 you spit on your opponent, poisoning them for five rounds
+5 | Headbutt        : ⚡ 20 A strong attack with a chance to stun for one round""")
                     # Actually use one of the special moves
                     case "ability":
                         if len(action) <= 1:
@@ -200,18 +139,18 @@ def begin_battle(enemies, loot):
                                     else:
                                         print("❌ You don't have enough energy for that")
                                     
-                                case 4: ## Taunt
-                                    if player.pp >= 10:
-                                        if player.target == "none":
-                                            print("❌ You need to actually target someone.")
-                                        else:
-                                            player.pp -= 10
-                                            print(f"> You do a little dance, which makes {player.target.name} turn red with rage!")
-                                            player.target.apply_condition(conditions["angry"], duration = 4)
-                                            move_on = True
-                                    else:
-                                        print("❌ You don't have enough energy for that")
-                                case 5: ## Ptooie
+                                #case 4: ## Taunt
+                                #    if player.pp >= 10:
+                                #        if player.target == "none":
+                                #            print("❌ You need to actually target someone.")
+                                #        else:
+                                #            player.pp -= 10
+                                #            print(f"> You do a little dance, which makes {player.target.name} turn red with rage!")
+                                #            player.target.apply_condition(conditions["angry"], duration = 4)
+                                #            move_on = True
+                                #    else:
+                                #        print("❌ You don't have enough energy for that")
+                                case 4: ## Ptooie
                                     if player.pp >= 20:
                                         if player.target == "none":
                                             print("❌ You need to actually target someone.")
@@ -227,7 +166,7 @@ def begin_battle(enemies, loot):
                                     print(f"> You recover {energy} energy!")
                                     player.pp = min(player.pp + energy, player.ppmax)
                                     move_on = True
-                                case 6: ## Headbutt
+                                case 5: ## Headbutt
                                     if player.pp >= 20:
                                         if player.target == "none":
                                             print("❌ You need to actually target someone.")
@@ -266,9 +205,9 @@ def begin_battle(enemies, loot):
                         if not move_on:
                             print("❌ That's not an item you have bud.")
                     # Run like a little coward
-                    case "flee":
-                        move_on = True
-                        fight_state = "fleed"
+                    #case "flee":
+                    #    move_on = True
+                    #    fight_state = "fleed"
         
                     case _:
                         print("❌ That's not a command. Try harder.")
@@ -295,26 +234,31 @@ def begin_battle(enemies, loot):
         # Reset
         player_turn = not player_turn
 
+    if fight_state == "WIN":
+        print("\x1b[33;1m    VICTORY! \033[0m\033[38;5:231m\n")
+    else:
+        print("\n\033[31;1m    YOU WERE DEFEATED \033[0m\033[38;5:231m\n")
+    return fight_state
     ### Game over message
-    match(fight_state):
-        case "fleed":
-            print("You ran away! Coward.")
-        case "playerlose":
-            print("""
-                YOU LOSE
-            """)
-        case "playerwin":
-            print("""
-                \u001b[38;5;190mVICTORY!!!\u001b[38;5;231m
-                            
-                  Loot
-        ————————————————————————            
-           - 45 coins
-           - 🩹 Bandaid
-            """)
-        case _:
-            # This shouldn't be possible in-game. If this has printed, something probably went wrong. 
-            print("Someone won. Dunno who.")
+    #match(fight_state):
+    #    case "fleed":
+    #        print("You ran away! Coward.")
+    #    case "playerlose":
+    #        print("""
+    #            YOU LOSE
+    #        """)
+    #    case "playerwin":
+    #        print("""
+    #            \u001b[38;5;190mVICTORY!!!\u001b[38;5;231m
+    #                        
+    #              Loot
+    #    ————————————————————————            
+    #       - 45 coins
+    #       - 🩹 Bandaid
+    #        """)
+    #    case _:
+    #        # This shouldn't be possible in-game. If this has printed, something probably went wrong. 
+    #        print("Someone won. Dunno who.")
 
 
 ###########################
