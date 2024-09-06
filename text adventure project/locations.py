@@ -15,13 +15,14 @@ class Admin(Location):
         self.active_tree = None
 
         self.checks = {
-            "bogem": True
+            "bogem": False
         }
 
         self.dialogue_trees = {
             "default": DialogueTree.load_from_file(path + 'admin/mr_tran_opening.json', self),
             "mr_tran_room": DialogueTree.load_from_file(path + 'admin/mr_tran_room.json', self),
-            "mr_chen_hallway": DialogueTree.load_from_file(path + 'admin/mr_chen_hallway.json', self)
+            "mr_chen_hallway": DialogueTree.load_from_file(path + 'admin/mr_chen_hallway.json', self),
+            "lunch_area": DialogueTree.load_from_file(path + 'lunch area/lunch_area.json', self),
         }
         self.fights = {
             "dog_agents": {

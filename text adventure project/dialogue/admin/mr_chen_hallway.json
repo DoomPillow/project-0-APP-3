@@ -104,20 +104,10 @@
             "locked": true,
             "options": {
                 "WIN": {
-                    "text": "Mr Chen dissolves into a gooey puddle. It's nougatty and delicious!",
-                    "options": {
-                        "FEAST! FEAST! FEAST!": {
-                            "text": "YUM YUM YUM YUM YUM YUM YUM YUM YUM YUM YUM"
-                        }
-                    }
+                    "text": "After a long, grueling battle, you emerge victorious.\n\nMr Chen: This is not the last time we will meet! Mark my words child! MARK MY WORDS!!!\n\nMr Chen limps away very slowly. It's kinda sad to watch, honestly. However, this is behind you now. You walk out of the doors, and enter the Eastern Quad.[load lunch_area]"
                 },
                 "LOSE": {
-                    "text": "Mr Chen grabs you and slams you in the ground head-first, crushing your cabeza like a spoiled pumpkin.",
-                    "options": {
-                        "This is not the ending I desired": {
-                            "text": "TOO BAD"
-                        }
-                    }
+                    "text": "Mr Chen grabs you and slams you in the ground head-first, crushing your cabeza like a spoiled pumpkin."
                 }
             }
         }
