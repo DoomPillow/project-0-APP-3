@@ -1,0 +1,28 @@
+{
+    "text": "You walk past the lunch tables and up to a large wooden gate, behind which is the idyllic tilled soil and dry beige plants of the PHS Garden. The garden is usually pretty well kept, but for whatever reason, now the plant life is all overgrown through the protective mesh. You step through the gate and begin trudging through the garden. The plants tangle at your feet, making it difficult to walk through.\n\nTo the corner of the garden, you spot a large metal shed, equally overgrown as the rest of the garden with weeds and vines.\n\nLooking over to your left, you spot a tiny blue object lying on the ground.",
+    "options": {
+        "Investigate the blue object": {
+            "text": "You walk up to it to give it a closer look. It's a blueberry. You kneel down to pick it up, when you hear a large BANG, and the dirt beneath your feet explodes into a dusty cloud. From behind the plants you hear a grumbling and the sound of someone spitting. When the dust settles, you see a Mr Michealsen covered in dirt and leaves crawling out of the bushes with a hunting rifle in hand.\n\nMr Michealsen: Oops! Sorry, didn't mean to almost shoot you there. Now if you mind, I have some business to return to.",
+            "options": {
+                "YOU ALMOST SHOT ME!": {
+                    "text": "Mr Michealsen: But I didn't."
+                },
+                "Apology accepted": {
+                    "text": "Mr Michealsen: "
+                },
+                "Why do you have a gun?": {
+                    "text": ""
+                },
+                "What's with the blueberry?": {
+                    "text": ""
+                }
+            }
+        },
+        "Go to the shed": {
+            "text": ""
+        },
+        "leave": {
+            "text": "You leave"
+        }
+    }
+}

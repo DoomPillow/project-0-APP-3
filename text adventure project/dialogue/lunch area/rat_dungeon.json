@@ -1,0 +1,27 @@
+{
+    "text": "After crawling through the cramped tunnel for what feels like an hour, you come to a small opening  that looks like it leads in to a larger cavern. Looking through the opening, all you see is pitch darkess hiding what could be a hundred foot drop. You spent a minute thinking the best way forward, when the soil begins to crumble, and give way under you. You tumble through the dirt for a couple minutes, before it settles, and you readjust to your surroundings. You find yourself in a large underground cavern. The place is almost completely dark, except for a flickering yellow light in the distance. The cave is rocky and jagged, but you manage to traverse through it well enough to get close enough to the glowing light to see roughly what it is. It appears to be the front of a castle engraved into the cavern wall. Two glowing torches are affixed to it, illuminating the area. At each side of a small wooden drawbridge, is a rat standing on their hind legs wearing a metal helmet, and holding a musket. You hide behind a patch of roots hanging down from the top of the cave as you decide what to do next.",
+    "options": {
+        "Walk up to them nonchalant": {
+            "text": "You step out from the roots and begin strutting up to the drawbridge all nonchalant, not even making eye-contact with the rats. The immediately jump in shock at the sight of a human, and point their muskets at you.\n\nRat 1: Hey! S-s- stop! This is private property!",
+            "options": {
+                "(Keep walking)": {},
+                "I'm an envoy sent by the supreme leader of the human race, move aside": {}
+            }
+        },
+        "Attack them, guns blazing": {
+            "text": ""
+        },
+        "Sneaky style": {
+            "text": ""
+        },
+        "Throw a coin to distract them": {
+            "text": ""
+        },
+        "Use your boundless charisma": {
+            "text": ""
+        },
+        "Jump out screaming loudly" : {
+            "text": ""
+        }
+    }
+}

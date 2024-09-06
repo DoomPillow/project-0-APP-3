@@ -1,0 +1,113 @@
+{
+    "text": "Mr Tran: Okay, I’m ready now. What do you need?",
+    "options": {
+        "I need a schedule": {
+            "text": "Mr Tran rubs the sleep off his eyes and looks at you, perplexed.\n\nMr Tran: Huh? Why don't you have one? Registration was two days ago. You should have one already.\n\nYou tell him that you went to registration, and all they did was shrug and tell you to go home.\n\nMr Tran: Hmmm. Don't worry, I can solve that no problem.\nLet me just pull up your schedule on Aeries here.... one moment.... there! Here you go!\n\nHe pulls open a drawer in his desk and takes out a big red crayon. He then flips over some paper already on his desk and scribbles a schedule onto it. After quickly giving it to you, he begins to lean back and return to his slumber.[unlock 2]",
+            "msgid": 3,
+            "options": {
+                "(read the schedule)": {
+                    "text": "You take a look at the schedule. According to this, your first period is \"learning time\", located in \"classroom.\" You have a feeling this might not be the most credible schedule.[warp 3][unlock 10][unlock 11]",
+                    "msgid": 2,
+                    "locked": true
+                },
+                "(look at his screen)": {
+                    "text": "You peer over the desk and take a look at his computer screen. It's a youtube video, 3 hours into a 10 hour compilation of satisfying soap cutting. It's the only tab open.[warp 3]"
+                },
+                "(tap mr tran to wake him up)": {
+                    "text": "You give Mr Tran a tap on the shoulder. His eyes slowly shift open, and he leans back up in his chair. You feel like you hear the noise of scraping concrete as he does so, as if his bones haven't moved in a hundred years.\n\nMr Tran: What. Do. You. WANT FROM ME? I gave you your schedule and everything, stop bothering me.[warp 5]",
+                    "locked": true,
+                    "msgid": 11
+                },
+                "(kick the desk loudly)": {
+                    "text": "You kick the desk, making a loud thud. Mr Tran jumps back up from his seat and gasps loudly. His pale expression of horror quickly turns to a red one of rage as he looks to you.\n\nMr Tran: WHAT!? WHAT COULD YOU POSSBLY WANT!? I gave you your schedule![warp 5]",
+                    "locked": true,
+                    "msgid": 10
+                }
+            }
+        },
+        "Were you asleep just now?": {
+            "text": "Mr Tran: I think you're mistaken. I was merely practicing my circadian meditation. It's important for maintaining my iron will required to be a counselor. You wouldn't understand.\n\nDespite his words, he looks at you, half squinting, with huge purple eye bags under his eyes. He reaches for a white coffee mug with the text \"the most counselor ever\" printed on it. He looks inside and makes a slight frown at the sight of it being empty.[warp 1]"
+        },
+        "You suck, eat my pant.": {
+            "text": "Mr Tran: What did I do to deserve this?[warp 1]"
+        },
+        "(leave)": {
+            "text": "",
+            "locked": true
+        },
+        ">fake schedule<": {
+            "text": "",
+            "options": {
+                "This schedule isn't real Mr Tran": {
+                    "text": "Mr Tran: Uuugggghhhhhh. Fiiiiinne, I'll give you a better schedule since your so picky. But, at least do your do-diligence and get me a cup of coffee. I'm too tired to properly get any work done. Especially at this ungodly hour.\n\nYou look at the clock. It's 10:05 AM. It can't be that ungodly.",
+                    "msgid": 8,
+                    "options": {
+                        "How hard is it to just get my schedule?": {
+                            "msgid": 13,
+                            "text": "Mr Tran: Well, you see, that's all up to perspective, now isn't it? Apparently it's very hard for YOU to get your schedule, hence why you're coming to me. And what I'm telling you is that you need to get me a coffee. Got it?[lock 9][warp 8]"
+                        },
+                        "I'm not getting you a coffee.": {
+                            "msgid": 14,
+                            "text": "Mr Tran: What a shame. Y'know I really wanted to get you your schedule and everything, but I guess that's just not happening.\n\nMr Tran makes a super exaggerated pouty face as he says this.[lock 9][warp 8]"
+                        },
+                        "Can't you get the coffee yourself?": {
+                            "text": "Mr Tran: What coffee? I don't see any coffee.\n\nMr Tran looks around the room with a confused expression and exaggerated hand motions.[lock 9]",
+                            "msgid": 6,
+                            "options": {
+                                "No, like, get up and make yourself the coffee.": {
+                                    "text": "Mr Tran: Huh!? There's coffee? Show it to me! Bring it here and show it to me! You must be going crazy because I'm really not seeing any coffee here.[lock][unlock 7][warp 6]"
+                                },
+                                "I'm not backing down on this. Make the coffee yourself": {
+                                    "text": "Mr Tran: Listen, kid. I'ma be straight with you. You either make me this coffee, or you go knocking on every door of this damn school one by one for each period until you get the right one. I'm not gonna force your hand, but I think we both know what the right choice is.[lock][warp 6]",
+                                    "locked": true,
+                                    "msgid": 7
+                                },
+                                "whatever": {
+                                    "text": "Mr Tran eagerly awaits your response.[lock 6][warp 8]"
+                                }
+                            }
+                        },
+                        "How about instead you coff-up my schedule BUD?": {
+                            "text": "Mr Tran: Woah woah woah! Let's not get aggressive here!\n\nMr Tran recoils in his seat. You didn't even say it that loudly, but he looks like you instilled him with genuine fear.[lock 9][lock 12]",
+                            "msgid": 12,
+                            "options": {
+                                "I'm sorry!!!": {
+                                    "text": "Mr Tran: Oh, good! For a second there I almost thought you weren't gonna get me a coffee.[warp 8]"
+                                },
+                                "I'm not sorry, give me my schedule": {
+                                    "text": "Mr Tran tumbles out of his chair and cowers behind it. He then quickly takes out a walkie-talkie and hovers his finger above one of the buttons.\n\nMr Tran: I- I'LL CALL SECURITY! I WILL! DON'T MAKE ME DO IT!",
+                                    "options": {
+                                        "Okay fine, I'll back down": {
+                                            "text": "Mr Tran: *phew*... good. Now, where were we?[warp 8]"
+                                        },
+                                        "DO IT, coward": {
+                                            "text": "A bead of sweat runs down the side of mr trans head as he pushes down on the on button of the walkie-talkie, and begins screaming an ear-piercing bird call that reverberates throughout the entire room. Within seconds, the doors to the room burst open, and six armed men with suits and sunglasses on rush in and surround you.\n\nD.O.G Agents(in unison): You've woofed your last bulldog. Prepare to die.[fight dog_agents]",
+                                            "options": {
+                                                "WIN": {
+                                                    "text": "Mr Tran dies from high glucose levels and you win. Good job!!!"
+                                                },
+                                                "LOSE": {
+                                                    "text": "You lie on the ground, bloody, and ridden with bullet holes. The D.O.G agents quickly file out of the room. All who's left is Mr Tran, who is quickly trying to regain his composure.\n\nMr Tran: Now, where were we?[warp 8][lock 13][lock 14][lock 6]"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "You know what, fine. I'll get you a coffee.": {
+                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room]"
+                        },
+                        "Sure thing! How do you like your coffee?": {
+                            "text": "Mr Tran: Now THAT's what I like to hear! You're one of the good ones. Y'know, if you're lucky, I might just add you to the NHS email list. But don't get too excited. I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room]",
+                            "msgid": 9
+                        }
+                    }
+                }
+            },
+            "locked": true,
+            "msgid": 5
+        }
+    },
+    "msgid": 1
+}
