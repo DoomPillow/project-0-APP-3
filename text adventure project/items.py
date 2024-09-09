@@ -29,7 +29,7 @@ class bomb(Item):
 class pill(Item):
     def __init__(self):
         super().__init__()
-        self.name = "Painkiller"
+        self.name = "Painkillers"
         self.emojo = "💊"
         self.description = "It stops the pain, but temporarily makes you weaker."
     
@@ -37,7 +37,7 @@ class pill(Item):
         heal = 10
         player.hp = min(player.hp + heal, player.hpmax)
         player.dmgbonus -= 1
-        print(f"> You down a painkiller, and recover ❤️ {heal} hp!")
+        print(f"> You down the painkillers, and recover ❤️ {heal} hp!")
 
 class bandaid(Item):
     def __init__(self):
@@ -81,8 +81,8 @@ class juice(Item):
         self.description = "A bland yet refreshing juice. Recovers some energy."
     
     def use(self, target, player, enemies):
-        heal = random.randint(15, 30)
-        player.pp = min(player.pp + heal, player.ppmax)
+        heal = random.randint(18, 32)
+        player.pp = min(player.pp + heal, max(player.pp, player.ppmax))
         print(f"> You slurp down the juice box and recover ⚡{heal} energy!")
 
 class cigarette(Item):
@@ -125,6 +125,28 @@ class hobobomb(Item):
         for enemy in enemies:
             enemy.apply_condition(conditions["poisoned"], duration = random.randint(2,4))
 
+class milk(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Choccy Milk"
+        self.emojo = "🍫"
+        self.description = "A carton of chocolate milk. Makes you STRONG! RRRAAAAAAAGGGGHHHHH!!!"
+    
+    def use(self, target, player, enemies):
+        player.dmgbonus += 3
+        print(f"> 💪 You shotgun the milk carton, and your muscles grow to ten times their size!")
+
+class ketamine(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Pure Liquid Ketamine"
+        self.emojo = "💉"
+        self.description = "This definitely has long-term health effects. Sets your energy to ⚡100."
+    
+    def use(self, target, player, enemies):
+        player.pp = 100
+        print(f"> ⚡ You crack open the syringe and drink its contents, and gain LUDICROUS POWER!!! ")
+
 ##### debug items
 
 class cancer(Item):
@@ -154,13 +176,17 @@ class itm_nuke(Item):
             enemy.hp -= dmg
             time.sleep(0.5)
 
-class itm_milk(Item):
-    def __init__(self):
-        super().__init__()
-        self.name = "Milk Carton"
-        self.emojo = "🥛"
-        self.description = "Makes you STRONG! RRRAAAAAAAGGGGHHHHH!!!"
-    
-    def use(self, target, player, enemies):
-        player.dmgbonus += 3
-        print(f"> 💪 You shotgun the milk carton, and your muscles grow to ten times their size!")
+
+item_map = {
+    "bomb": bomb,
+    "pill": pill,
+    "bandaid": bandaid,
+    "burger": burger,
+    "camera": cam,
+    "juice": juice,
+    "cigarette": cigarette,
+    "soap": soap,
+    "hobobomb": hobobomb,
+    "milk": milk,
+    "ketamine": ketamine
+}

@@ -29,7 +29,7 @@
             "text": "Mr Tran: I think you're mistaken. I was merely practicing my circadian meditation. It's important for maintaining my iron will required to be a counselor. You wouldn't understand.\n\nDespite his words, he looks at you, half squinting, with huge purple eye bags under his eyes. He reaches for a white coffee mug with the text \"the most counselor ever\" printed on it. He looks inside and makes a slight frown at the sight of it being empty.[warp 1]"
         },
         "You suck, eat my pant.": {
-            "text": "Mr Tran: What did I do to deserve this?[warp 1][check bogem]"
+            "text": "Mr Tran: What did I do to deserve this?[warp 1]"
         },
         ">fake schedule<": {
             "text": "",

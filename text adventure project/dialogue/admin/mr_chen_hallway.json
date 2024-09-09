@@ -89,7 +89,7 @@
                             "text": "Mr Chen: BUT IT IS FOR ME!!! DIE!!![warp 5][fight mr_chen]"
                         },
                         "(silently walk away)": {
-                            "text": "You begin slowly walking away toward the end of the hallway. You open the door to the outside world, take one look back, and see Mr Chen in the fetal position on the ground, loudly weeping in a puddle of his own tears. You slowly close the door, and forget that this had ever happened."
+                            "text": "You begin slowly walking away toward the end of the hallway. You open the door to the outside world, take one look back, and see Mr Chen in the fetal position on the ground, loudly weeping in a puddle of his own tears. You slowly close the door, and forget that this had ever happened.[load lunch_area]"
                         }
                     }
                 }
@@ -107,7 +107,19 @@
                     "text": "After a long, grueling battle, you emerge victorious.\n\nMr Chen: This is not the last time we will meet! Mark my words child! MARK MY WORDS!!!\n\nMr Chen limps away very slowly. It's kinda sad to watch, honestly. However, this is behind you now. You walk out of the doors, and enter the Eastern Quad.[load lunch_area]"
                 },
                 "LOSE": {
-                    "text": "Mr Chen grabs you and slams you in the ground head-first, crushing your cabeza like a spoiled pumpkin."
+                    "text": "Both of you After a good punch to the jaw, you fall over, and all of your loose change comes spilling out of your pockets. Like a little child seeing his favorite christmas present under the tree, Mr Chen immediately darts for the change and starts revelling in it.\n\nMr Chen: Yes!! Yes!!! I DID IT!! THE MONEY IS MIIINNEEEE HHBLBLGHGGGHGHGHJSGHGHJGHGJH\n\nMr Chen keeps repeatedly picking up the change and throwing it in the air, letting it shower him as it falls back to the ground.",
+                    "msgid": 13,
+                    "options": {
+                        "Why are you like this": {
+                            "text": "Mr Chen isn't in the right headspace to process your words. It might be best to leave him be.[warp 13]"
+                        },
+                        "You have bested me, Mr Chen, but mark my words, for I will return. And when I do, you will be sorry.": {
+                            "text": "He's too infatuated with his coins to hear you, though you're sure your amazing speech would have rattled him to his bones if he did hear you.[warp 13]"
+                        },
+                        "I don't have the energy to care about this anymore (leave)": {
+                            "text": "You decide to leave him to his laurels and go to the lunch area. You walk out of the doors, and enter the Eastern Quad.[load lunch_area]"
+                        }
+                    }
                 }
             }
         }

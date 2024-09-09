@@ -59,6 +59,6 @@ print("\nMr. Tran lifts up a finger, and spends almost a full minute taking deep
 input("\nPress Enter to continue...")
 
 
-current_location.active_tree = current_location.dialogue_trees["default"]
+current_location.active_tree = current_location.dialogue_trees["mr_chen_hallway"]
 while current_location.active_tree != None:
     current_location.active_tree.run()

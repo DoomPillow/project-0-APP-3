@@ -2,8 +2,18 @@
 import random
 import time
 from conditions import conditions
+import math
 
 dead_enemies = []
+enemies = []
+
+def get_damage(a, b, player):
+    dmg = random.randint(a,b)
+    if player.has_condition("blocking"):
+        dmg = math.floor(dmg * 0.5)
+    
+    return dmg
+
 
 #### DEFAULT ENEMY
 
@@ -32,7 +42,7 @@ class Enemy:
 
     def attack(self, player):
         if random.randint(1, 100) <= self.hitratio:
-            dmg = random.randint(1, 3 + self.dmgbonus)
+            dmg = get_damage(1, 3 + self.dmgbonus, player)
             print(f"> {self.name} smacks you for {dmg} damage!!!")
             player.hp -= dmg
             time.sleep(1.0)
@@ -40,7 +50,7 @@ class Enemy:
             print(f"> {self.name} takes a swing... but misses!")
             time.sleep(1.0)    
 
-    def make_turn(self, player):
+    def make_turn(self, player, enemies):
         self.attack(player)
 
 
@@ -59,7 +69,7 @@ class Enemy:
 
         for condition_name in expired_conditions:
             condition = conditions[condition_name]
-            condition.remove(self)
+            condition.remove(self, True)
             del self.active_conditions[condition_name]
 
         ## Check if I'm dead
@@ -90,7 +100,7 @@ class MrTran(Enemy):
         player.apply_condition(conditions["poisoned"], 3)
         time.sleep(1.0)
 
-    def make_turn(self, player):
+    def make_turn(self, player, enemies):
         #super().make_turn(player)
         self.attack(player)
 
@@ -101,7 +111,7 @@ class DogAgent(Enemy):
 
     def attack(self, player):
         if random.randint(1, 100) <= self.hitratio:
-            dmg = random.randint(8, 15 + self.dmgbonus)
+            dmg = get_damage(8, 15 + self.dmgbonus, player)
             print(f"> {self.name} unloads bullets into you for {dmg} damage!!!")
             player.hp -= dmg
             time.sleep(1.0)
@@ -109,7 +119,7 @@ class DogAgent(Enemy):
             print(f"> {self.name}'s gun is jammed.")
             time.sleep(1.0)    
 
-    def make_turn(self, player):
+    def make_turn(self, player, enemies):
         self.attack(player)
 
 class Rat(Enemy):
@@ -130,7 +140,7 @@ class Rat(Enemy):
 
     def attack(self, player):
         if random.randint(1, 100) <= self.hitratio:
-            dmg = random.randint(1, 2 + self.dmgbonus)
+            dmg = get_damage(1, 2 + self.dmgbonus, player)
             print(f"> {self.name} takes a chomp at you, for {dmg} damage!!!")
             player.hp -= dmg
             time.sleep(1.0)
@@ -138,7 +148,7 @@ class Rat(Enemy):
             print(f"> {self.name} tries to chomp you... but misses!")
             time.sleep(1.0)    
 
-    def make_turn(self, player):
+    def make_turn(self, player, enemies):
         #super().make_turn(player)
         rando = random.randint(0,10)
         if rando < 6:
@@ -163,7 +173,7 @@ class MrChen(Enemy):
         if random.randint(1, 100) <= self.hitratio:
             
             # Damage
-            dmg = random.randint(1, 3 + self.dmgbonus)
+            dmg = get_damage(1, 3 + self.dmgbonus, player)
             # Message stuff
             match(random.randint(0,4)):
                 case 0: print(f"> {self.name} punches you with his brass knuckles for {dmg} damage!!!")
@@ -184,7 +194,7 @@ class MrChen(Enemy):
                 case 4: print(f"> {self.name} reconsiders his life choices")            
             time.sleep(1.0)    
 
-    def make_turn(self, player):
+    def make_turn(self, player, enemies):
 
         if self.hp < self.hpmax*0.5 and not self.has_condition("angry"):
             print(f"> 💢 {self.name} is furious!")
@@ -195,3 +205,125 @@ class MrChen(Enemy):
             self.attack(player)
         else:
             self.burn(player)
+
+###################
+
+class AntHercules(Enemy):
+    def __init__(self):
+        super().__init__("Hercul-ant", 35)
+        self.hitratio = 70
+        self.bouldering = False
+
+    def attack(self, player):
+        if random.randint(1, 100) <= self.hitratio:
+            
+            # Damage
+            dmg = get_damage(1, 3 + self.dmgbonus, player)
+            # Message stuff
+            match(random.randint(0,4)):
+                case 0: print(f"> {self.name} slams his fists into your hand for {dmg} damage!!!")
+                case 1: print(f"> {self.name} pulls out your cuticle for {dmg} damage!!!")
+                case 2: print(f"> {self.name} kicks your knuckles for {dmg} damage!!!")
+                case 3: print(f"> {self.name} crushes your fingernail, dealing {dmg} damage!!!")
+                case 4: print(f"> {self.name} beats your pinky finger for {dmg} damage!!!")
+                
+            # Do stuff
+            player.hp -= dmg
+            time.sleep(1.0)
+        else:
+            match(random.randint(0,3)):
+                case 0: print(f"> {self.name} takes a swing at you... but misses!")
+                case 1: print(f"> {self.name} is too busy gloating to hit you")
+                case 2: print(f"> {self.name} aims for your fingernail, but misses!")
+                case 3: print(f"> {self.name} flexes his muscles")      
+            time.sleep(1.0)    
+
+    def make_turn(self, player, enemies):
+        
+        if self.bouldering:
+            dmg = get_damage(4, 8 + self.dmgbonus, player)
+            print(f"> {self.name} hurls their boulder at you, dealing {dmg} damage!!!")
+            self.bouldering = False
+            player.hp -= dmg
+            time.sleep(1.0)
+        elif random.randint(0,4) != 4:
+            self.attack(player)
+        else:
+            print(f"> {self.name} picks up a giant boulder!")
+            self.bouldering = True
+            time.sleep(1.0)
+
+###################
+
+class AntAchilles(Enemy):
+    def __init__(self):
+        super().__init__("Ant-chilles", 25)
+        self.hitratio = 80
+
+    def attack(self, player):
+        if random.randint(1, 100) <= self.hitratio:
+            
+            # Damage
+            dmg = get_damage(1, 4 + self.dmgbonus, player)
+            # Message stuff
+            match(random.randint(0,4)):
+                case 0: print(f"> {self.name} jabs your finger for {dmg} damage!!!")
+                case 1: print(f"> {self.name} throws a javelin at you, dealing {dmg} damage!!!")
+                case 2: print(f"> {self.name} does a triple-backflip combo slice, dealing {dmg} damage!!!")
+                case 3: print(f"> {self.name} stabs you in the joint of your index finger for {dmg} damage!!!")
+                case 4: print(f"> {self.name} stabs you in your thumb for {dmg} damage!!!")
+                
+            # Do stuff
+            player.hp -= dmg
+            time.sleep(1.0)
+        else:
+            match(random.randint(0,3)):
+                case 0: print(f"> {self.name} takes a jab at you... but misses!")
+                case 1: print(f"> You dodge {self.name}'s javelin throw!")
+                case 2: print(f"> {self.name} stabs you, but doesn't do much because he's an ant")
+                case 3: print(f"> {self.name} wonders how he'll be remembered when he wins this battle")      
+            time.sleep(1.0)   
+
+    def make_turn(self, player, enemies):
+        self.attack(player)
+
+###################
+
+class AntSpartacus(Enemy):
+    def __init__(self):
+        super().__init__("Spartac-ant", 20)
+        self.hitratio = 60
+
+    def attack(self, player):
+        if random.randint(1, 100) <= self.hitratio:
+            
+            # Damage
+            dmg = get_damage(2, 5 + self.dmgbonus, player)
+            # Message stuff
+            match(random.randint(0,4)):
+                case 0: print(f"> {self.name} recklessly slashes at your ring finger, dealing {dmg} damage!!!")
+                case 1: print(f"> {self.name} stabs you in the palm of your hand for {dmg} damage!!!")
+                case 2: print(f"> {self.name} does a triple-backflip combo slice, dealing {dmg} damage!!!")
+                case 3: print(f"> {self.name} hacks at your hand with his sword, dealing {dmg} damage!!!")
+                case 4: print(f"> {self.name} chops the edge of your fingernail off, dealing {dmg} damage!!!")
+                
+            # Do stuff
+            player.hp -= dmg
+            time.sleep(1.0)
+        else:
+            match(random.randint(0,3)):
+                case 0: print(f"> {self.name} charges at you, but trips and tumbles away")
+                case 1: print(f"> You flick away {self.name}'s sword attack!")
+                case 2: print(f"> {self.name} takes a swing, and misses!")
+                case 3: print(f"> {self.name} does a heroic monologue.")      
+            time.sleep(1.0)   
+
+    def make_turn(self, player, enemies):
+
+        if random.randint(0,1) != 1 or self.has_condition("angry"):
+            self.attack(player)
+        else:
+            print(f"> 💢 {self.name} yells a loud war cry!!!")
+            for enemy in enemies:
+                enemy.apply_condition(conditions["angry"], 3)
+            time.sleep(1.0) 

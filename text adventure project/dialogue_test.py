@@ -1,6 +1,8 @@
 import re
 import json
 from fight_test import begin_battle
+from items import item_map
+from player import player
 
 class DialogueTree:
     def __init__(self, text_file=None, location=None):
@@ -51,34 +53,45 @@ class DialogueTree:
                 args = _match.split(' ')
                 match (args[0]):
                     
-                    case "check":
+                    case "check": # Set a variable to true in the location
                         self.location.checks[args[1]] = True
 
-                    case "item":
-                        print("> You got 💊 \033[38;5;226mpainkillers\033[38;5;231m!\n")
+                    case "switch": # Go to either one message or another depending on the state of a location variable
+                        # args [1] is the variable to check
+                        # args [2] and [3] are the messages to warp to if its either true or false respectively
+                        if self.location.checks[args[1]]:
+                            self.current_node = self.find_node(int(args[2]))
+                        else:
+                            self.current_node = self.find_node(int(args[3]))
+                        # Display the new text
+                        return True
 
-                    case "warp":
+                    case "item": # give an item to the player
+                        item = item_map[args[1]]()
+                        player.inventory.append(item)
+                        print(f" - You got {item.emojo} \033[38;5;226m{item.name}\033[38;5;231m!\n")
+
+                    case "warp": # go to a message with a given msg id
                         self.current_node = self.find_node(int(args[1]))
-                        #print("...")
 
-                    case "unlock":
+                    case "unlock": # unlock a message
                         self.find_node(int(args[1]))["locked"] = False
 
-                    case "lock":
+                    case "lock": # lock either a specified message, or the current message
                         if len(args) == 1:
                             self.current_node["locked"] = True
                         else:
                             self.find_node(int(args[1]))["locked"] = True
-                    case "fight":
+                    case "fight": # begin a fight
                         fight_struct = self.location.fights[args[1]]
                         input("\x1b[31;1mPress ENTER to continue...\x1b[0m\033[38;5;231m")
                         self.current_node = self.current_node["options"][begin_battle(fight_struct["enemies"], fight_struct["loot"])]
                         return True
                         
-                    case "load":
+                    case "load": # Enter a different dialogue tree
                         self.location.active_tree = self.location.dialogue_trees[args[1]]
 
-                    case _:
+                    case _: # Broken
                         print(f"Unknown command: {args[0]}")
         else:
             print(f"\033[38;5;231m{input_text}\n")

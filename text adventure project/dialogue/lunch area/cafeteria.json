@@ -1,12 +1,177 @@
 {
-    "text": "You crack open the double doors to the cafeteria. Usually this place would be bustling with people scrambling for PHS signature food product, but right now, it' eerily quiet in here. That is, until you hear an ear-piercing scream coming from behind the crusty doors to the kitchen.\n\n???: AAAAAGGHH! GET THESE THINGS AWAY FROM ME!",
+    "text": "You crack open the double doors to the cafeteria, and step inside.[switch cafe_rats_battled 1 2]",
     "options": {
-        "Investigate the kitchen": {
-            "text": "You crack open the doors to the kitchen, and are immediately greeted by a terrible scene. Dirty cutlery and splattered piles of grey slop scattered across the room. Standing atop the sink is a terrified lady cowering from a swarm of rats hopping up and down trying to bite at her. Suddenly one of the rats turns their attention to you, points, and lets out a big screetch. The rest of the rats take notice as well, and they start heading for you.[fight cafe_rats]"
+        "> RAT BATTLE <": {
+            "text": "Usually this place would be bustling with people scrambling for PHS signature food product, but right now, it' eerily quiet in here. That is, until you hear an ear-piercing scream coming from behind the crusty doors to the kitchen.\n\n???: AAAAAGGHH! GET THESE THINGS AWAY FROM ME![warp 1]",
+            "locked": true,
+            "msgid": 2,
+            "options": {
+                "Investigate the kitchen": {
+                    "text": "You push open the crusty door and open the kitchen, and are immediately greeted by with terrible scene. Dirty cutlery and splattered piles of grey slop are scattered across the room. Standing atop the sink is a terrified lady cowering from a swarm of rats hopping up and down trying to bite at her. Suddenly one of the rats turns their attention to you, points, and lets out a big screetch. The rest of the rats take notice as well, and they start heading for you.[lock 6][unlock 7][check cafe_rats_battled][fight cafe_rats]",
+                    "msgid": 5,
+                    "options": {
+                        "WIN": {
+                            "text": "With haste, strength, and cunning, the vanquish the rats."
+                        },
+                        "LOSE": {
+                            "text": "The rats overwhelm you. The rats bite at your legs, and you try to kick and stomp in retaliation, but they're too nimble. One of them grabs your ankles and pulls you to the ground, following the rats getting up and kicking you repeatedly from all sides. It's agony, but after about five minutes, they get bored, take your money, and scurry off."
+                        },
+                        "> AFTER BATTLE <": {
+                            "text": "Smartha: Thanks for dealing with those rats, I really owe ya' one. Anyways, I really gotta' get back to makin' my special grey slop.\n\nShe gets down from the sink and returns to a giant pot of clumpy grey slop and begins sloshing it around with her plastic spoon. The volume of the grey slop seems to increase as she does so, oddly enough."
+                        }
+                    }
+                }
+            }
         },
-        "Explore the room": {},
-        "I'm sure they'll be fine (leave)": {
-            "text": "You're a terrible human."
+        "> NORMAL <": {
+            "text": "Given how it's class time, the place is eerily quiet, except for the gentle hum of the school's ancient electronics, and the muffled sloshing and gloopslooshing heard from behind the kitchen doors where Smartha stirs her grey slop food product.",
+            "msgid": 1,
+            "options": {
+                "Go into the kitchen": {
+                    "text": "[switch cafe_rats_battled 4 5]"
+                },
+                "Explore the room": {
+                    "text": "You take a look around the room. Some metal trays scattered on the metal table contain various 'foods' and 'vegetables'. A large metal trashcan sits just beside the table. Various inspirational posters telling you to eat healthy are plastered onto the walls.[unlock 10][unlock 11][unlock 12][warp 1]"
+                },
+                "Look in the trash": {
+                    "text": "You go to the trash can. It's full of food scraps and other pieces of gross garbage. It looks like it's currently being pillaged for nutrients by a small number of ants.",
+                    "locked": true,
+                    "options": {
+                        "Search the trash can": {
+                            "text": "You dig around in the trash can with your grubby mitts. As soon as you penetrate the surface of the garbage, it's almost as if you break a film keeping back hundreds of years of stench and pure nasty. Everything you touch feels slick and gross.",
+                            "options": {
+                                "deeper": {
+                                    "text": "You reach deeper into the trash can. Once again, you feel like you break through some barrier of garbage, and enter a large cavity containing an army of ants. They start to scatter at first, but then they regroup and begin laying siege on your hand. It feels like fire as they inflict thousands of miniscule bites to you every millesecond.",
+                                    "options": {
+                                        "PERSIST": {
+                                            "text": "You endure the attack from the ants and keep scrounging around deeper in the trash can. You breach the ants' first line of defense, and you can feel as your hand approaches the greater kingdom of the ants. You feel as they enter a phalanx formation and begin stabbing you with little tiny ant spears.",
+                                            "options": {
+                                                "Plow through the ant army": {
+                                                    "text": "You slam your fist through the army of ants, but they don't back down without a fight. You feel as the back lines send volleys of arrows through the air, piercing your skin as you try to break through the front lines. After a grueling twelve seconds of heated battle, the army is defeated, and you plan your next move.",
+                                                    "options": {
+                                                        "Invade the Kingdom": {
+                                                            "text": "You decide to keep pushing forward until you reach the Kingdom proper. You come to a giant wall constructed from bottle caps, popsicle sticks, and milk cartons, that surrounds the kingdom. The front gates swing open, and an even larger army of ants marches forward. You steel yourself and charge foward, slamming through formation after formation of ants. You arrive, exhausted, yet full of adrenaline, to the front gates of the Kingdom. You are mere inches from the spoils of war, until three more ants emerge from the gates, covered from head to toe in all sorts of legendary gear. They will not let you pass without one final fight.[fight ant_heroes]",
+                                                            "options": {
+
+                                                            }
+                                                        },
+                                                        "Stage a coup to take down the ant kingdom from within": {
+                                                            "text": "You sneak in through the border of the Ant Kingdom, and lay low for a couple of days, learning the culture, their history, and what can be exploited. Once your plan is fully formed, you go down to the local Beer Hall and stand up on a table, and give a rousing speech about the corruption of the monarchy, and how the rich are exploiting the common folk for only the benefit of themselves. Your speech is so good that the ants erupt in a fit of outrage, and the spirit of revolution. You grab your axes, you grab your torches, and you grab your pitchforks, and you march up to the castle gates.\n\nThe guards march out of the castle, and begin taking shots at your insurrection. However, your numbers are greater, and are able to storm the castle. As the guards are all distracted, you begin darting through the halls of the castle, until you find yourself in the chamber of the queen herself. She sits on her throne, defenseless, as her guards are outside of the castle fighting off the rebellion. This is your chance.",
+                                                            "msgid": 99,
+                                                            "options": {
+                                                                "Slay the queen": {
+                                                                    "text": "You step up to the queen and brandish your fingernail. You get ready to execute her, before three ants jump in your way, each of them equipped with mythical weapons and armor. They will not let you pass without one final fight.[fight ant_heroes]",
+                                                                    "options": {
+
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "Pull back and flank them": {
+                                                    "text": "You retreat from the ant army in hopes of finding their weak spot elsewhere, and taking them down there. You feel as a volley of tiny arrows sent from the back lines pierce your skin as you try to escape, but you ultimately are able to lose the army. After days of grueling travel through the trash peninsula, you reach a crossroads where you can see much of the neighboring civilizations. To the north is the south border of the Ant Kingdom, while further south, you see another ant city nestled between two trash mountains.",
+                                                    "options": {
+                                                        "Continue your siege on the kingdom alone": {
+                                                            "text": "You decide to continue your journey to the kingdom as a lone vagabond. You cross over the top of a hill, and see your target: The Ant Kingdom, surrounded by only a meager amount of troops. They are clearly on high alert, but you don't care. You steel your resolve, and charge toward kingdom. You crash through wave afte wave of ant guards, and eventually burst through the front gates. The city guards swarm you, but they are no match for you. Civilians scream as you smash through their houses, shops, and infrastructure to reach ther castle. You make it to the castle and flick down the door, darting through hallway after hallway before reaching the Queen's chamger. You see her, sitting on her throne. She is completely defenseless, as the guards scramble outside trying to survive the havoc you left behind. Now is your chance.[warp 99]"
+                                                        },
+                                                        "Ally with the neighboring kingdom": {
+                                                            "text": "After a couple days of travel, you make it to the neighboring kingdom. As you stop before the tall stone walls surrounding the kingdom, you see a couple of termites walk up and look down at you. You can't really hear or understand them, but you have a feeling they're questioning what you're doing here.",
+                                                            "msgid": 105,
+                                                            "options": {
+                                                                "Yeah, I have no clue what you're saying.": {
+                                                                    "text": "They look at you with their big bug eyes. If they said something, you still wouldn't know.[warp 105]"
+                                                                },
+                                                                "I wish to speak to your leader. We have a common enemy.": {
+                                                                    "text": "The termites look at each other, and not. After a moment, they pull a lever, and the kingdom gates shift open. They then motion for you to enter. You would go through the entrance, but your hand being connected to your arm makes that difficult, so you just kinda go over the wall. The termites lead you through an opulet palace constructed from pure crap and garbage, and into the throne room, where the Queen resides. You propose the idea of invading the neighboring ant kingdom. You don't really understand termite language but it seems like she's interested, so you continue on\n\nYou detail your plan for them to send out an army to overwhelm their soldiers, while you go ahead and slay their queen. Again, you can't hear the termites or understand their language, but you get the idea she's suggesting to deploy three armies -- each in a testudo formation -- with a front line composed of spear-soldiers, and a backline of archers and ballista. The plan sounds good to you, so you go forward with it.\n\nAfter months of planning and getting everything into place, it comes the day of invasion. You march on toward the Ant Kingdom, with your army of termites following close behind. After crossing a bend in the path, you see it before you: the ant army. They have been preparing for this moment. Perhaps a spy relayed this information to them, or maybe a scout spotted our march, but that doesn't matter now. An ear-shattering war-horn sounds, and both armies charge down the hills into a valley, where soldiers clash. Ant and termite limbs go flying in all directions. You use this opportunity to push through and attack the kingdom while the troops are occupied. Eventually, you make it to the front gates of the kingdom. You easily flick them down, and walk through the city proper. It feels quiet, and cold. Everyone hides in their homes, there's not a single villager walking about, nor a merchant peddling goods in the market. Everything is empty. That is, until you step up to the Queen's castle. The drawbridge lowers down, and three ants step out, each equipped with mythical armor and weapons. They challenge you to one last fight.[fight ant_heroes]"
+                                                                },
+                                                                "I have an offer you can't refuse": {
+                                                                    "text": "They scowl as you say this. Everyone knows termites hate The Godfather and any references to it. After about a minute of awkward silence, the kingdom gates burst open, and a full militia of termites equipped with railguns flood out and gun you down within seconds. The pain makes you forcibly retract your hand out of the trash can.[warp 1]"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "Target the trade routes to cut off their supplies": {
+                                                    "text": "You recall the wise teachings of Sun Tzu, and remember that the best way forward is not to expend all your resources at once, but force your enemy to waste theirs before your grand attack. You give the side of the trash can a gentle kick, and all of the ants come tumbling off. You retreat from the army and lay low for a couple of days to let them grow weak from their access to supplies being cut off. After leaving your humble cottage and traveling down the central path toward the ant kingdom, you see the army typically stationed around the kingdom is absent. In fact, the whole place seems to be under a sort of lockdown.",
+                                                    "options": {
+                                                        "Invade them in their weakest hour": {
+                                                            "text": "You walk up to the front gates, facing zero resistance. Only a few straggling guards stand atop the tall kingdom walls, standing ruad, but you easily overpower them, and flick down the kingdom doors. As you walk through the kingdom, the city guard tries to stop you, but their numbers are no match for you. Eventually you make it to the Queen's castle, and demand for them to open the gates. The drawbridge begins to lower, and you walk forward to enter. However, before you can get through, three ants, each equipped with legendary weapons and armor, step out of the castle. They will not let you take the queen without first taking down them.[fight ant_heroes]",
+                                                            "options": {
+                                                                
+                                                            }
+                                                        },
+                                                        "Leave them to die off on their own": {
+                                                            "text": "You decide that the ant problem will deal with itself if you just wait long enough. Seconds turn to minutes, turn to hours, turn to days. The sun rises and sets numerous times around you. At one moment, you feel like time no longer exists. It's just you, and your hand in this trash can. That is, until you feel a tap on your shoulder. You turn around to see the security guard behind you. His sunglasses largely block his expression, but he doesn't look happy.\n\nSecurity Guard: What are you doing here?",
+                                                            "msgid": 100,
+                                                            "options": {
+                                                                "Don't worry, I'm supposed to be here": {
+                                                                    "text": "Security Guard: I find that hard to believe. After reviewing the security cameras, it appears that you've been here with your hand in the trash for over two hours now.[lock][unlock 101][warp 100]"
+                                                                },
+                                                                "Two hours? I've been here for days!": {
+                                                                    "locked": true,
+                                                                    "msgid": 101,
+                                                                    "text": "Security Guard: Nope, it's only been two hours. Even still, two hours is much longer than any one person has the right to have their hand elbow-deep in a trash can for. You're going to need to explain yourself, or we're gonna have a problem.[lock][warp 100]"
+                                                                },
+                                                                "I'm stuck": {
+                                                                    "text": "He lets out a long sigh, then grabs your arm and pulls it out of the trash can.\n\nSecurity Guard: There, now you're free. Now hurry up and go to class.\n\nThe Security guard turns away with a mechanical precision, and saunters off.[warp 1]"
+                                                                },
+                                                                "Business, private business": {
+                                                                    "text": "The security guard almost looks stunned as you say this, as if in all his years of working at this school, he's never encountered something quite as strange as this. Without saying a word, he grabs your arm, and pulls it out of the trash can.\n\nSecurity Guard: Hurry up and go to class.[warp 1]"
+                                                                },
+                                                                "I'm looking for treasures!": {
+                                                                    "text": "Security Guard: Understood.\n\nWith that single word spoken, he turns away and saunters off. You feel around in the trash can with your hand again to try and regain your bearings. Looking back, the walls of the Ant Kingdom is in complete ruin. You approach the kingdom and walk through the gates. It looks as if the place is completely abandoned. All around you is crumbling buildings, empty market stalls, and an eerie quiet. As you approach the castle in the center of the kingdom, you see halphazard fortifications were constructed surrounding it. This appears to be the ants last bastion of sorts.",
+                                                                    "options": {
+                                                                        "I DEMAND YOU LET ME IN!": {
+                                                                            "text": "The gates to the fortress swing open, and three ants walk out, each of them equipped with legendary weapons and armor. They will not let you take their kingdom without one final fight.[fight ant_heroes]"
+                                                                        },
+                                                                        "Let me in please": {
+                                                                            "text": "The gates to the fortress swing open, and three ants walk out, each of them equipped with legendary weapons and armor. They will not let you take their kingdom without one final fight.[fight ant_heroes]"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "stop": {
+
+                                        }
+                                    }
+                                },
+                                "stop": {
+
+                                }
+                            }
+                        },
+                        "Ew (go back)": {
+                            "text": "You thankfully decide to not dig around in the trash can, and return to business.[warp 1]"
+                        }
+                    },
+                    "msgid": 10
+                },
+                "Look in the food trays": {
+                    "text": "",
+                    "msgid": 11,
+                    "locked": true
+                },
+                "Read the posters": {
+                    "text": "",
+                    "locked": true,
+                    "msgid": 12
+                },
+                "I'm sure they'll be fine (leave)": {
+                    "text": "You're a terrible human. Nonetheless, you return to the East Quad.[load lunch_area]",
+                    "msgid": 6
+                },
+                "(leave)": {
+                    "text": "You leave the comforting must of the cafeteria and return to the East Quad.[load lunch_area]",
+                    "locked": true,
+                    "msgid": 7
+                }
+            }
         }
     }
 }

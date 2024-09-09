@@ -10,8 +10,8 @@ class Condition:
     def apply(self, target):
         self.apply_effect(target)
 
-    def remove(self, target):
-        self.remove_effect(target)
+    def remove(self, target, output):
+        self.remove_effect(target, output)
 
 # Define effects for conditions
 def apply_angry(target):
@@ -21,7 +21,7 @@ def apply_angry(target):
         target.dmgbonus += 3
 
 
-def remove_angry(target):
+def remove_angry(target, output):
     if "💢" in target.emojo:
         target.emojo = target.emojo.replace('💢', '')
         target.hitratio += 30
@@ -37,11 +37,12 @@ def apply_poisoned(target):
         time.sleep(0.8)
 
 
-def remove_poisoned(target):
+def remove_poisoned(target, output):
     if "💚" in target.emojo:
         target.emojo = target.emojo.replace('💚', '❤️')
-    print(f"> {target.name} is no longer poisoned!")
-    time.sleep(1)
+    if output:
+        print(f"> {target.name} is no longer poisoned!")
+        time.sleep(1)
 
 
 def apply_fire(target):
@@ -53,11 +54,12 @@ def apply_fire(target):
         time.sleep(0.8)
 
 
-def remove_fire(target):
+def remove_fire(target, output):
     if "🔥" in target.emojo:
         target.emojo = target.emojo.replace('🔥', '')
-        print(f"> {target.name} is no longer on fire!")
-        time.sleep(1)
+        if output:
+            print(f"> {target.name} is no longer on fire!")
+            time.sleep(1)
 
 
 def apply_stunned(target):
@@ -65,11 +67,12 @@ def apply_stunned(target):
         target.emojo += "💫"
 
 
-def remove_stunned(target):
+def remove_stunned(target, output):
     if "💫" in target.emojo:
         target.emojo = target.emojo.replace('💫', '')
-        print(f"> {target.name} shakes off their daze!!")
-        time.sleep(1)
+        if output:
+            print(f"> {target.name} shakes off their daze!!")
+            time.sleep(1)
 
 def apply_soapy(target):
     if "🫧" not in target.emojo:
@@ -77,12 +80,22 @@ def apply_soapy(target):
         target.hitratio -= 25
 
 
-def remove_soapy(target):
+def remove_soapy(target, output):
     if "🫧" in target.emojo:
         target.emojo = target.emojo.replace('🫧', '')
         target.hitratio += 25
-        print(f"> {target.name} wipes off the suds.")
-        time.sleep(1)
+        if output:
+            print(f"> {target.name} wipes off the suds.")
+            time.sleep(1)
+
+def apply_blocking(target):
+    if "🛡️" not in target.emojo:
+        target.emojo += "🛡️"
+
+
+def remove_blocking(target, output):
+    if "🛡️" in target.emojo:
+        target.emojo = target.emojo.replace('🛡️', '')
 
 # Instantiate conditions
 conditions = {
@@ -91,4 +104,5 @@ conditions = {
     "fire": Condition("fire", apply_effect=apply_fire, remove_effect=remove_fire, reapply = True),
     "stunned": Condition("stunned", apply_effect=apply_stunned, remove_effect=remove_stunned),
     "soapy": Condition("soapy", apply_effect=apply_soapy, remove_effect=remove_soapy),
+    "blocking": Condition("blocking", apply_effect=apply_blocking, remove_effect=remove_blocking),
 }
