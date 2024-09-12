@@ -206,6 +206,47 @@ class MrChen(Enemy):
         else:
             self.burn(player)
 
+class RatGuard(Enemy):
+    def __init__(self, name):
+        super().__init__(name, 20)
+        self.hitratio = 65
+
+    def bite(self, player):
+        dmg = get_damage(2, 5 + self.dmgbonus, player)
+        print(f"> {self.name} chomps you with a poisonous bite!")
+        player.hp -= dmg
+        time.sleep(1.0)
+        player.apply_condition(conditions["poisoned"], 3)
+
+    def attack(self, player):
+        if random.randint(1, 100) <= self.hitratio:
+            
+            # Damage
+            dmg = get_damage(3, 8 + self.dmgbonus, player)
+            # Message stuff
+            match(random.randint(0,4)):
+                case 0: print(f"> {self.name} shoots you square in the solar plexus, dealing {dmg} damage!!!")
+                case 1: print(f"> {self.name} bayonets you for {dmg} damage!!!")
+                case 2: print(f"> {self.name} shoots you in the shoulder for {dmg} damage!!!")
+                case 3: print(f"> {self.name} claws at you, dealing {dmg} damage!!!")
+                case 4: print(f"> {self.name} shoots you in the shoulder for {dmg} damage!!!")
+                
+            # Do stuff
+            player.hp -= dmg
+            time.sleep(1.0)
+        else:
+            match(random.randint(0,2)):
+                case 0: print(f"> {self.name} fires a bullet at you, but misses!")
+                case 1: print(f"> {self.name} stops to sneeze")
+                case 2: print(f"> {self.name} bayonets you, but you block!")  
+            time.sleep(1.0)   
+
+    def make_turn(self, player, enemies):
+        if random.randint(0,3) != 3:
+            self.attack(player)
+        else:
+            self.bite(player)
+
 ###################
 
 class AntHercules(Enemy):

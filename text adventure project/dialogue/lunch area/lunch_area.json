@@ -1,26 +1,40 @@
 {
-    "text": "Before you is the boundless, idyllic beauty of the PHS Eastern Quad. Various metal tables dot the area, all painted a patriotic bulldog-red. The glourious statue of Biggy D lies in the center of the quad. To the right is the entrance to the cafeteria, as well as the gates to the Garden. To your left, you see a stand set up by the military, where two people dressed up in camo gear stand. Further up the quad, you see someone relaxing on a colorful deckchair, beneath a bright blue and pink sun umbrella. Upon further inspection, you see that person to be Mr Tran.",
+    "text": "Before you is the boundless, idyllic beauty of the PHS Eastern Quad. Various metal tables dot the area, all painted a patriotic bulldog-red. The glourious statue of Biggy D lies in the center of the quad. To the right, past the lunch tables, is the entrance to the cafeteria, as well as the gates to the Garden. Sitting at one of the lunch tables you notice some weird kid in a bright lime-green hoodie fiddling with his lunch box.",
+    "unrestricted": true,
+    "msgid": 1,
     "options": {
         "Go to the cafeteria": {
-            "text": "[load cafeteria]"
-        },
-        "Talk to the military people": {
-            "text": ""
-        },
-        "Go to the Biggy D statue": {
-            "text": ""
+            "text": "[load cafeteria 0]"
         },
         "Go to the garden": {
-            "text": ""
+            "text": "[load garden 0]"
         },
-        "Go to Mr Tran": {
-            "text": ""
+        "Talk to the Green Kid": {
+            "text": "You walk over to the table where the guy in the green hoodie sits. He wears a mask and sunglasses, obscuring his face. Despite this, you can tell he notices you as you approach.\n\n???: Greetings. I can see you have come to invest in some of my wares. Why don't you take a look?",
+            "msgid": 2,
+            "options": {
+                "What wares?": {
+                    "text": "He twiddles his fingers over his anime lunch box, and slaps his hand on it.\n\n???: You have no idea what treasures are contained within this beauty. Things that your mind can barely comprehend, I assure you.[warp 2]"
+                },
+                "Who the frick are you": {
+                    "text": "???: The details of my origins is unimportant to you. Although my name is now a secret lost to time, you can call me... Serpent's Fang!\n\nHe does a little flourish as he says this.",
+                    "options": {
+                        "I'm definitely not calling you that": {
+                            "text": "???: Your disrespect of the masters will not go unnoticed...[warp 2]"   
+                        }
+                    }
+                },
+                "I'll take a look (shop)": {
+                    "text": "???: Glad to hear it...\n\nHe unzips the lunch box and opens the flap.\n\n???: What would you like to purchase?[shop green_guy][warp 2]"
+                },
+                "I don't want anything (leave)": {
+                    "text": "???: Thank you for your business kind stranger.\n\nYou walk away from that weird guy and return to the East Quad.[warp 1]"
+                }
+            }
         },
         "Go to the Admin Building": {
-            "text": ""
-        },
-        "Go to the center quad": {
             "text": ""
         }
     }
 }
+

@@ -1,0 +1,38 @@
+{
+    "bandaid": {
+        "id": "bandaid",
+        "price": 10,
+        "desc": "???: Do you not know what bandaids are? They can heal your wounds while in the midst of a heated battle."
+    },
+    "disposable camera": {
+        "id": "camera",
+        "price": 15,
+        "desc": "???: A disposable camera. It's bright flash can blind your foes on the battlefield."
+    },
+    "juice box": {
+        "id": "juice",
+        "price": 10,
+        "desc": "???: Replenishes must needed stamina. This one's cranberry flavor."
+    },
+    "cigarette": {
+        "id": "cigarette",
+        "price": 5,
+        "desc": "???: I would tell you to hide this, but I don't think anyone actually cares. Eating it can remove unwanted effects while in a fight."
+    },
+    "choccy milk": {
+        "id": "milk",
+        "price": 10,
+        "desc": "???: Do you not know what bandaids are? They can heal your wounds while in the midst of a heated battle."
+    },
+    "soap bar": {
+        "id": "soap",
+        "price": 20,
+        "desc": "???: A pink soap bar. The suds make your enemies slippery and inaccurate."
+    },
+    "shotakan scroll": {
+        "id": "scroll",
+        "price": 50,
+        "desc": "???: This ancient scroll contains techniques passed down through generations of Shotokan warriors. It is no use to me anymore, for I have already mastered the art.",
+        "one-time": true
+    }
+}

@@ -1,5 +1,6 @@
 {
     "text": "You crack open the double doors to the cafeteria, and step inside.[switch cafe_rats_battled 1 2]",
+    "msgid": 0,
     "options": {
         "> RAT BATTLE <": {
             "text": "Usually this place would be bustling with people scrambling for PHS signature food product, but right now, it' eerily quiet in here. That is, until you hear an ear-piercing scream coming from behind the crusty doors to the kitchen.\n\n???: AAAAAGGHH! GET THESE THINGS AWAY FROM ME![warp 1]",
@@ -7,17 +8,18 @@
             "msgid": 2,
             "options": {
                 "Investigate the kitchen": {
-                    "text": "You push open the crusty door and open the kitchen, and are immediately greeted by with terrible scene. Dirty cutlery and splattered piles of grey slop are scattered across the room. Standing atop the sink is a terrified lady cowering from a swarm of rats hopping up and down trying to bite at her. Suddenly one of the rats turns their attention to you, points, and lets out a big screetch. The rest of the rats take notice as well, and they start heading for you.[lock 6][unlock 7][check cafe_rats_battled][fight cafe_rats]",
+                    "text": "You are immediately greeted by with terrible scene. Dirty cutlery and splattered piles of grey slop are scattered across the room. Standing atop the sink is a terrified lady cowering from a swarm of rats hopping up and down trying to bite at her. Suddenly one of the rats turns their attention to you, points, and lets out a big screetch. The rest of the rats take notice as well, and they start heading for you.[lock 6][unlock 7][check cafe_rats_battled][fight cafe_rats]",
                     "msgid": 5,
                     "options": {
                         "WIN": {
-                            "text": "With haste, strength, and cunning, the vanquish the rats."
+                            "text": "With haste, strength, and cunning, you vanquish the rats.[warp 22 reprint]"
                         },
                         "LOSE": {
-                            "text": "The rats overwhelm you. The rats bite at your legs, and you try to kick and stomp in retaliation, but they're too nimble. One of them grabs your ankles and pulls you to the ground, following the rats getting up and kicking you repeatedly from all sides. It's agony, but after about five minutes, they get bored, take your money, and scurry off."
+                            "text": "The rats overwhelm you. The rats bite at your legs, and you try to kick and stomp in retaliation, but they're too nimble. One of them grabs your ankles and pulls you to the ground, following the rats getting up and kicking you repeatedly from all sides. It's agony, but after about five minutes, they get bored, take your money, and scurry off.[warp 22 reprint]"
                         },
                         "> AFTER BATTLE <": {
-                            "text": "Smartha: Thanks for dealing with those rats, I really owe ya' one. Anyways, I really gotta' get back to makin' my special grey slop.\n\nShe gets down from the sink and returns to a giant pot of clumpy grey slop and begins sloshing it around with her plastic spoon. The volume of the grey slop seems to increase as she does so, oddly enough."
+                            "text": "Smartha: Thanks for dealing with those rats, I really owe ya' one. Anyways, I really gotta' get back to makin' my special grey slop.\n\nShe gets down from the sink and returns to a giant pot of clumpy grey slop and begins sloshing it around with her plastic spoon. The volume of the grey slop seems to increase as she does so, oddly enough.[warp 4]",
+                            "msgid": 22
                         }
                     }
                 }
@@ -28,10 +30,61 @@
             "msgid": 1,
             "options": {
                 "Go into the kitchen": {
-                    "text": "[switch cafe_rats_battled 4 5]"
+                    "text": "You push open the crusty doors and enter the kitchen.[switch cafe_rats_battled 4 5]"
+                },
+                ">NON RAT KITCHEN <": {
+                    "text": "Smartha continues to stir her giant constantly-overlowing pot of grey slop. She pays little mind to you as you enter the room.",
+                    "locked": true,
+                    "msgid": 4,
+                    "options": {
+                        "talk to Smartha": {
+                            "text": "Smartha: What do you want?",
+                            "msgid": 9,
+                            "options": {
+                                "Do you have any coffee?": {
+                                    "text": "Smartha: Aren't you a bit young to be addicted to caffeine?",
+                                    "options": {
+                                        "It's for Mr Tran": {
+                                            "text": "Smartha: Oh, so he sent another one. Well, I don't have coffee, but I do have my number-one coffee pot!\n\nShe motions to a coffee pot caked in layers upon layers of crust.\n\nSmartha: I'll let you make some coffee in it, all you need is coffee beans, milk, and sugar. Once you have those three things, come back here and I'll brew it for you.[warp 9]"
+                                        },
+                                        "Yes. Now gimme!": {
+                                            "text": "Smartha: I respect the determination! Well, I don't have coffee, but I do have my number-one coffee pot!\n\nShe motions to a coffee pot caked in layers upon layers of crust.\n\nSmartha: I'll let you make some coffee in it, all you need is coffee beans, milk, and sugar. Once you have those three things, come back here and I'll brew it for you.[warp 9]"
+                                        }
+                                    }
+                                },
+                                "How's life?": {
+                                    "text": "Smartha: Nunya gosh damn beesewax.[warp 9]"
+                                },
+                                "What is in that grey stuff?": {
+                                    "text": "Smartha: Why, only the finest ingredient: Sorghum. It's the most deliciously delectable morsel in all the land! Although, it's been a bit difficult to get my hands on it with the rats around. They've been eatin' it all up! -Oh, and xanthan gum. The stuff is about 20% xanthan gum.[unlock 50][warp 9]"
+                                },
+                                "Can I have some grey slop?": {
+                                    "locked": true,
+                                    "msgid": 50,
+                                    "text": "Smartha: Y'know, I really would give you some, but because of that Sorghum shortage, I really can't spare any extra. Though, if you can take care of that rat problem, I'm sure the Sorghum would thrive! If you did that, I'd be sure to lend you some slop.[unlock 51][warp 9]"
+                                },
+                                "Where does the Sorghum grow?": {
+                                    "locked": true,
+                                    "msgid": 51,
+                                    "text": "Smartha: Mr Michealsen grows it in his little garden. If you talked to him there, he might be able to help you deal with the rat problem.[warp 9]"
+                                },
+                                "I don't want to talk to you anymore (leave) ": {
+                                    "text": "Smartha: Before you go-\n\nSmartha reaches into a dirty bag, and pulls out a wedge of cheese held within a ziploc bag. The district gave us this government-mandated cheese a couple weeks ago. If you could maybe use this as bait to get rid of those rats somehow, I'd greatly appreciate it! I might even give you some of my special grey slop.[check govt_cheese][item cheese][lock][unlock 55][warp 4]"
+                                },
+                                "I don't want to talk to you anymore (leave)": {
+                                    "msgid": 55,
+                                    "locked": true,
+                                    "text": "[warp 4]"
+                                }
+                            }
+                        },
+                        "leave the kitchen": {
+                            "text": "You leave the delicious aromas of the kitchen and return to the cafeteria.[warp 1]"
+                        }
+                    }
                 },
                 "Explore the room": {
-                    "text": "You take a look around the room. Some metal trays scattered on the metal table contain various 'foods' and 'vegetables'. A large metal trashcan sits just beside the table. Various inspirational posters telling you to eat healthy are plastered onto the walls.[unlock 10][unlock 11][unlock 12][warp 1]"
+                    "text": "You take a look around the room. Some metal trays scattered on the metal table contain various 'foods' and 'vegetables'. A large metal trashcan sits just beside the table.[lock][unlock 10][unlock 11][warp 1]"
                 },
                 "Look in the trash": {
                     "text": "You go to the trash can. It's full of food scraps and other pieces of gross garbage. It looks like it's currently being pillaged for nutrients by a small number of ants.",
@@ -83,7 +136,10 @@
                                                                     "text": "They look at you with their big bug eyes. If they said something, you still wouldn't know.[warp 105]"
                                                                 },
                                                                 "I wish to speak to your leader. We have a common enemy.": {
-                                                                    "text": "The termites look at each other, and not. After a moment, they pull a lever, and the kingdom gates shift open. They then motion for you to enter. You would go through the entrance, but your hand being connected to your arm makes that difficult, so you just kinda go over the wall. The termites lead you through an opulet palace constructed from pure crap and garbage, and into the throne room, where the Queen resides. You propose the idea of invading the neighboring ant kingdom. You don't really understand termite language but it seems like she's interested, so you continue on\n\nYou detail your plan for them to send out an army to overwhelm their soldiers, while you go ahead and slay their queen. Again, you can't hear the termites or understand their language, but you get the idea she's suggesting to deploy three armies -- each in a testudo formation -- with a front line composed of spear-soldiers, and a backline of archers and ballista. The plan sounds good to you, so you go forward with it.\n\nAfter months of planning and getting everything into place, it comes the day of invasion. You march on toward the Ant Kingdom, with your army of termites following close behind. After crossing a bend in the path, you see it before you: the ant army. They have been preparing for this moment. Perhaps a spy relayed this information to them, or maybe a scout spotted our march, but that doesn't matter now. An ear-shattering war-horn sounds, and both armies charge down the hills into a valley, where soldiers clash. Ant and termite limbs go flying in all directions. You use this opportunity to push through and attack the kingdom while the troops are occupied. Eventually, you make it to the front gates of the kingdom. You easily flick them down, and walk through the city proper. It feels quiet, and cold. Everyone hides in their homes, there's not a single villager walking about, nor a merchant peddling goods in the market. Everything is empty. That is, until you step up to the Queen's castle. The drawbridge lowers down, and three ants step out, each equipped with mythical armor and weapons. They challenge you to one last fight.[fight ant_heroes]"
+                                                                    "text": "The termites look at each other, and not. After a moment, they pull a lever, and the kingdom gates shift open. They then motion for you to enter. You would go through the entrance, but your hand being connected to your arm makes that difficult, so you just kinda go over the wall. The termites lead you through an opulet palace constructed from pure crap and garbage, and into the throne room, where the Queen resides. You propose the idea of invading the neighboring ant kingdom. You don't really understand termite language but it seems like she's interested, so you continue on\n\nYou detail your plan for them to send out an army to overwhelm their soldiers, while you go ahead and slay their queen. Again, you can't hear the termites or understand their language, but you get the idea she's suggesting to deploy three armies -- each in a testudo formation -- with a front line composed of spear-soldiers, and a backline of archers and ballista. The plan sounds good to you, so you go forward with it.\n\nAfter months of planning and getting everything into place, it comes the day of invasion. You march on toward the Ant Kingdom, with your army of termites following close behind. After crossing a bend in the path, you see it before you: the ant army. They have been preparing for this moment. Perhaps a spy relayed this information to them, or maybe a scout spotted our march, but that doesn't matter now. An ear-shattering war-horn sounds, and both armies charge down the hills into a valley, where soldiers clash. Ant and termite limbs go flying in all directions. You use this opportunity to push through and attack the kingdom while the troops are occupied. Eventually, you make it to the front gates of the kingdom. You easily flick them down, and walk through the city proper. It feels quiet, and cold. Everyone hides in their homes, there's not a single villager walking about, nor a merchant peddling goods in the market. Everything is empty. That is, until you step up to the Queen's castle. The drawbridge lowers down, and three ants step out, each equipped with mythical armor and weapons. They challenge you to one last fight.[fight ant_heroes]",
+                                                                    "options": {
+                                                                        
+                                                                    }
                                                                 },
                                                                 "I have an offer you can't refuse": {
                                                                     "text": "They scowl as you say this. Everyone knows termites hate The Godfather and any references to it. After about a minute of awkward silence, the kingdom gates burst open, and a full militia of termites equipped with railguns flood out and gun you down within seconds. The pain makes you forcibly retract your hand out of the trash can.[warp 1]"
@@ -137,12 +193,12 @@
                                             }
                                         },
                                         "stop": {
-
+                                            "text": "Thankfully, you retract your hand from the trash can.[warp 1]"
                                         }
                                     }
                                 },
                                 "stop": {
-
+                                    "text": "Thankfully, you retract your hand from the trash can.[warp 1]"
                                 }
                             }
                         },
@@ -153,21 +209,16 @@
                     "msgid": 10
                 },
                 "Look in the food trays": {
-                    "text": "",
+                    "text": "You rummage through the food trays. Most of them are full of wilted vegetables, until you come to a tray of carrots. They're still wilted and vegetables, but at least they're useful.[lock][item carrot o][item carrot o][item carrot][warp 1]",
                     "msgid": 11,
                     "locked": true
                 },
-                "Read the posters": {
-                    "text": "",
-                    "locked": true,
-                    "msgid": 12
-                },
                 "I'm sure they'll be fine (leave)": {
-                    "text": "You're a terrible human. Nonetheless, you return to the East Quad.[load lunch_area]",
+                    "text": "You're a terrible human. Nonetheless, you return to the East Quad.[load lunch_area 1]",
                     "msgid": 6
                 },
                 "(leave)": {
-                    "text": "You leave the comforting must of the cafeteria and return to the East Quad.[load lunch_area]",
+                    "text": "You leave the comforting must of the cafeteria and return to the East Quad.[load lunch_area 1]",
                     "locked": true,
                     "msgid": 7
                 }

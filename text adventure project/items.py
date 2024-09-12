@@ -8,8 +8,9 @@ class Item:
         self.name = "undefined"
         self.emojo = "❔"
         self.description = "this looks broken and like the dev doesn't want you to see this"
+        self.usable_in_battle = True
 
-### Specific Items
+############# Buff/battle Items
 class bomb(Item):
     def __init__(self):
         super().__init__()
@@ -25,6 +26,18 @@ class bomb(Item):
             print(f"> 💥 You blow up {enemy.name} for {dmg} damage!!! 💥")
             enemy.hp -= dmg
             time.sleep(0.3)
+
+class carrot(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Carrot"
+        self.emojo = "🥕"
+        self.description = "The javelins of the jungle. Can skewer a target for moderate damage."
+    
+    def use(self, target, player, enemies):
+        dmg = random.randint(6, 10)
+        print(f"> You hurl a carrot at {target.name}, skewering them for {dmg} damage!")
+        target.hp -= dmg
 
 class pill(Item):
     def __init__(self):
@@ -147,6 +160,29 @@ class ketamine(Item):
         player.pp = 100
         print(f"> ⚡ You crack open the syringe and drink its contents, and gain LUDICROUS POWER!!! ")
 
+############# Important items
+
+class scroll(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Shotokan Scroll"
+        self.emojo = "🈲"
+        self.description = "There's no way this is legit. Contains a number of techniques for endurance and stamina. Permanently increases your health and energy."
+        self.usable_in_battle = False
+    
+    def use(self, target, player, enemies):
+        player.hpmax += 10
+        player.ppmax += 20
+        print(f"\033[38;5;231m> You read the ancient texts... You permanently gain an extra ❤️ 10 health and ⚡ 20 energy!")
+
+class cheese(Item):
+    def __init__(self):
+        super().__init__()
+        self.name = "Government Cheese"
+        self.emojo = "🧀"
+        self.description = "It's arguably cheese. Could be used to lure out rats."
+        self.usable_in_battle = False
+
 ##### debug items
 
 class cancer(Item):
@@ -160,7 +196,7 @@ class cancer(Item):
         player.hp = 0
         print(f"> You drink the liquid and instantly become a ball of cancer.")
 
-class itm_nuke(Item):
+class nuke(Item):
     def __init__(self):
         super().__init__()
         self.name = "Nuclear Bomb"
@@ -174,7 +210,7 @@ class itm_nuke(Item):
             dmg = random.randint(400, 800)
             print(f"> 💥 You blow up {enemy.name} for {dmg} damage!!! 💥")
             enemy.hp -= dmg
-            time.sleep(0.5)
+            #time.sleep(0.5)
 
 
 item_map = {
@@ -188,5 +224,8 @@ item_map = {
     "soap": soap,
     "hobobomb": hobobomb,
     "milk": milk,
-    "ketamine": ketamine
+    "ketamine": ketamine,
+    "carrot": carrot,
+    "scroll": scroll,
+    "cheese": cheese
 }

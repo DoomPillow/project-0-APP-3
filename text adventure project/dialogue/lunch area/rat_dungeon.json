@@ -1,27 +1,106 @@
 {
     "text": "After crawling through the cramped tunnel for what feels like an hour, you come to a small opening  that looks like it leads in to a larger cavern. Looking through the opening, all you see is pitch darkess hiding what could be a hundred foot drop. You spent a minute thinking the best way forward, when the soil begins to crumble, and give way under you. You tumble through the dirt for a couple minutes, before it settles, and you readjust to your surroundings. You find yourself in a large underground cavern. The place is almost completely dark, except for a flickering yellow light in the distance. The cave is rocky and jagged, but you manage to traverse through it well enough to get close enough to the glowing light to see roughly what it is. It appears to be the front of a castle engraved into the cavern wall. Two glowing torches are affixed to it, illuminating the area. At each side of a small wooden drawbridge, is a rat standing on their hind legs wearing a metal helmet, and holding a musket. You hide behind a patch of roots hanging down from the top of the cave as you decide what to do next.",
+    "msgid": 0,
     "options": {
         "Walk up to them nonchalant": {
             "text": "You step out from the roots and begin strutting up to the drawbridge all nonchalant, not even making eye-contact with the rats. The immediately jump in shock at the sight of a human, and point their muskets at you.\n\nRat 1: Hey! S-s- stop! This is private property!",
             "options": {
-                "(Keep walking)": {},
-                "I'm an envoy sent by the supreme leader of the human race, move aside": {}
+                "(Keep walking)": {
+                    "text": "Rat 1: STOP! STOP MOVING! YOU MUST-\n\nThe rats begin panicking as you just keep walking, until you slam into the front gates, which you unfortunately aren't strong enough to smash you like I guess you expected.\n\nRat 2: Umm.. be siezed.[warp 101 reprint]"
+                },
+                "I'm an envoy sent by the supreme leader of the human race, move aside": {
+                    "text": "Rat 2: Ah, okay. Go ahead.\n\nThe other rat pulls a big lever to open the gates, and you begin walking through.\n\nRat 2: Wait- the envoy sent by the supreme leader of the human race was supposed to come tomorrow! YOU FAKE![warp 101 reprint]"
+                }
             }
         },
-        "Attack them, guns blazing": {
-            "text": ""
+        "Jump out and start screaming": {
+            "text": "You dive out from behind the cover and just start going crazy! You start flailing your arms around and stuff and going wild! The rats don't like this so they get out their guns and start shooting at you.[warp 101 reprint]"
         },
         "Sneaky style": {
-            "text": ""
-        },
-        "Throw a coin to distract them": {
-            "text": ""
+            "text": "You decide the best course of action would be to sneak around the rats, but as soon as you step out from behind the cover, you realize two crucial mistakes:\n1) You are about 20 times the size of the rats your trying to sneak around\n2) The only entrance into the kingdom is the locked gates that the rats are guarding\n\nAs soon as the rats notice you, they point their guns at you and begin blasting.[warp 101 reprint]"
         },
         "Use your boundless charisma": {
-            "text": ""
+            "text": "You strut out from behind the cover and lean against the wall like you're the owner of the planet. The rats are noticeably startled by this, but you immediately persuade them with your silver tongue.",
+            "options": {
+                "I eat bugs": {
+                    "text": "The rats look at each other with utter confusion, then back to you. One of the rats slowly points their gun at you, and pulls the trigger.[warp 101 reprint]"
+                },
+                "You look like rats. I'm a human. What's up with that?": {
+                    "text": "The rats look at each other with utter confusion, then back to you. One of the rats slowly points their gun at you, and pulls the trigger.[warp 101 reprint]"
+                },
+                "[expletive] YOU!": {
+                    "text": "The rats look at each other with utter confusion, then back to you. One of the rats slowly points their gun at you, and pulls the trigger.[warp 101 reprint]"
+                }
+            }
         },
-        "Jump out screaming loudly" : {
-            "text": ""
+        "> RAT FIGHT <": {
+            "locked": true,
+            "msgid": 101,
+            "text": "[fight guard_rats]",
+            "options": {
+                "WIN": {
+                    "text": "With the rat guards vanquished, you punch down the gate, which after closer inspection appears to be made of cardboard. You march into the streets of the kingdom. You see as rats gasp and run back into their homes at the sight of you. The windows to the rat houses shut as you walk past them. You spot a large castle with a big gold statue of a rat with a crown on giving a chef's kiss face in front of it. You kick down the door, and enter the throne room of the Rat King, who leans forward in his throne to get a closer look at you. You notice a giant pile of sorghum behind where he sits.\n\nRat King: Well well well, what do we have here?[warp 12]"
+                },
+                "LOSE": {
+                    "text": "The rat guards look at each other as if they didn't expect to actually win that battle, then start dancing over your beaten and bruised body. After a couple minutes of this, they realize what they're doing and quickly regain their composure.\n\nRat 1: We have bested you! Prepare to have your fate judged before our king!\n\nEach rat grabs one of your ankles and starts pulling you through the gates of the kingdom. Civilian rats come out of their homes and watch as you are dragged through the city, and up to the castle gates. The gates shift open, and the rats drag you into the throne room, where the rat king sits.\n\nRat King: Bring him to me!\n\nThe two rats throw you to the ground, and the Rat King leans forward in his throne to get a closer look. You notice a giant pile of sorghum behind where he sits.\n\nRat King: Well well well, what do we have here?[warp 12]"
+                },
+                "> RAT DINGUS <": {
+                    "text": "Who cares. This isn't printed in the game anyways.",
+                    "msgid": 12,
+                    "options": {
+                        "I'm here to slay you, and put an end to your ratty ways!": {
+                            "text": "Rat King: Not so fast.. you must first answer my riddles![warp 44]"
+                        },
+                        "Bro, you gotta stop eating the sorghum": {
+                            "text": "Rat King: Only if you can answer my riddles![warp 44]"
+                        },
+                        "Let's just skip to the fight.": {
+                            "text": "Rat King: Not so fast.. you must first answer my riddles![warp 44]"
+                        },
+                        "You suck, eat my pant.": {
+                            "text": "Rat King: What did I do to deserve this?[warp 12]"
+                        },
+                        "> WHARG <": {
+                            "msgid": 44,
+                            "locked": true,
+                            "text": "",
+                            "options": {
+                                "Huh?": {
+                                    "text": "Rat King: It's my thing. I do riddles. Listen, I know you want me to stop eating your stupid sorghum, just answer my riddles and I'll never touch it again.[warp 44]"
+                                },
+                                "What if I just kill you instead?": {
+                                    "text": "Rat King: Nope! Can't.[lock]",
+                                    "options": {
+                                        "understood": {
+                                            "text": "Rat King: Wonderful.[warp 44]"
+                                        },
+                                        "Why not?": {
+                                            "text": "Rat King: Because I have plot armor magic on my side and you can't physically fight me even if you wanted to.[warp 44]"
+                                        }
+                                    }
+                                },
+                                "I LOVE RIDDLES!": {
+                                    "text": "Rat King: That's what I'm talking about! Enthusiasm! Now, I'll agree to stop eating your dumb sorghum if you can answer my riddles three correctly, which NO ONE EVER HAS!!! HAHAHHAHAHAHAHAHA. *ahem.\n\nHere is my first riddle: What's big, but is- but- but it gets smaller as it gets bigger I mean as it gets older. It gets smaller when its older- wait did I say bigger? I meant smaller. It gets smaller as it gets older. As in with time, like time passes and this thing I'm talking about gets smaller.[riddle]",
+                                    "options": {
+                                        "FAIL": {
+                                            "text": "Uh oh you suck. This is the end of the game currently. D:"
+                                        },
+                                        "WIN?": {
+                                            "text": "Good job. This is the end of the game currently. D:"
+                                        },
+                                        "MURDER": {
+                                            "text": "Oh no you died. This is the end of the game currently. D:"
+                                        }
+                                    }
+                                },
+                                "I'm not doing that": {
+                                    "text": "Rat King: Listen bud, it's gotta happen so how about we make this quick and just do the freaking riddles.[warp 44]"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

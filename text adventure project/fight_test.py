@@ -108,6 +108,8 @@ def begin_battle(enemies, loot):
                     case "inventory":
                         if len(player.inventory) > 0:
                             for i in range(len(player.inventory)):
+                                if not player.inventory[i].usable_in_battle:
+                                    continue
                                 print(f"{i+1} | {player.inventory[i].emojo} {player.inventory[i].name}")
                         else:
                             print("Your inventory is empty :(")
@@ -243,7 +245,9 @@ def begin_battle(enemies, loot):
             else:
                 print(f" - {item.emojo} {item.name}")
                 player.inventory.append(item)
+        input("\n\x1b[33;1mPress ENTER to continue...\x1b[0m\033[38;5;231m")
     else:
         print("\n\033[31;1m    YOU WERE DEFEATED \033[0m\033[38;5:231m\n")
+        player.money = 0
     
     return fight_state

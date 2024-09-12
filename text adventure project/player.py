@@ -17,7 +17,7 @@ class Player:
         self.inventory = [
             itm.burger(),
             itm.bandaid(), 
-            itm.juice(),
+            itm.juice()
         ]
 
         self.target = None
@@ -68,5 +68,4 @@ class Player:
         self.rebuff(False)
         
 
-## Shouldn't be initialized in this file, but is here for now
 player = Player()

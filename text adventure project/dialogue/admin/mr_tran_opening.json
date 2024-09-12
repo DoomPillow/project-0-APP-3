@@ -92,10 +92,10 @@
                             }
                         },
                         "You know what, fine. I'll get you a coffee.": {
-                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room]"
+                            "text": "Mr Tran: That's what I like to hear! I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room 1]"
                         },
                         "Sure thing! How do you like your coffee?": {
-                            "text": "Mr Tran: Now THAT's what I like to hear! You're one of the good ones. Y'know, if you're lucky, I might just add you to the NHS email list. But don't get too excited. I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room]",
+                            "text": "Mr Tran: Now THAT's what I like to hear! You're one of the good ones. Y'know, if you're lucky, I might just add you to the NHS email list. But don't get too excited. I like my coffee with equal parts sugar and milk. I prefer civet coffee beans and yak cream, but I'm not picky.[load mr_tran_room 1]",
                             "msgid": 9
                         }
                     }

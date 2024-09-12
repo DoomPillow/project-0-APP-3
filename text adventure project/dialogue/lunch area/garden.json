@@ -1,28 +1,96 @@
 {
     "text": "You walk past the lunch tables and up to a large wooden gate, behind which is the idyllic tilled soil and dry beige plants of the PHS Garden. The garden is usually pretty well kept, but for whatever reason, now the plant life is all overgrown through the protective mesh. You step through the gate and begin trudging through the garden. The plants tangle at your feet, making it difficult to walk through.\n\nTo the corner of the garden, you spot a large metal shed, equally overgrown as the rest of the garden with weeds and vines.\n\nLooking over to your left, you spot a tiny blue object lying on the ground.",
+    "msgid": 0,
     "options": {
         "Investigate the blue object": {
-            "text": "You walk up to it to give it a closer look. It's a blueberry. You kneel down to pick it up, when you hear a large BANG, and the dirt beneath your feet explodes into a dusty cloud. From behind the plants you hear a grumbling and the sound of someone spitting. When the dust settles, you see a Mr Michealsen covered in dirt and leaves crawling out of the bushes with a hunting rifle in hand.\n\nMr Michealsen: Oops! Sorry, didn't mean to almost shoot you there. Now if you mind, I have some business to return to.",
+            "text": "You walk up to it to give it a closer look. It's a blueberry. You kneel down to pick it up, when you hear a large BANG, and the dirt beneath your feet explodes into a dusty cloud. From behind the plants you hear a grumbling and the sound of someone spitting. When the dust settles, you see a Mr Michealsen covered in dirt and leaves crawling out of the bushes with a hunting rifle in hand.\n\nMr Michealsen: Oops! Didn't mean to almost shoot you there. Now if you mind, I have some business to return to.",
+            "msgid": 1,
             "options": {
                 "YOU ALMOST SHOT ME!": {
-                    "text": "Mr Michealsen: But I didn't."
+                    "text": "Mr Michealsen: But I didn't, so I'm not legally liable for anything.[lock][warp 1]"
                 },
                 "Apology accepted": {
-                    "text": "Mr Michealsen: "
+                    "text": "Mr Michealsen: Never said sorry.[warp 1]"
                 },
                 "Why do you have a gun?": {
-                    "text": ""
+                    "text": "Mr Michealsen: These god-forsaken rabbits keep eating my sorghum crop! I got this gun so I can blow the gizards out of those rabbits' dumb little heads.[unlock 2][warp 1]"
                 },
                 "What's with the blueberry?": {
-                    "text": ""
+                    "text": "Mr Michealsen: Rabbits love blueberries! I was hoping to lure one here and blast it with this here rifle. Teach em' for eatin' my sorghum crop.[unlock 2][warp 1]"
+                },
+                "I'm pretty sure rats are the problem, not rabbits": {
+                    "msgid": 2,
+                    "locked": true,
+                    "text": "Mr Michealsen: Rats Schmats. As long as I shoot em and they get killed and they're dead and they stop eating up my sorghum crop and they never come back here to PHS again, that's all I care about.[warp 1]"
+                },
+                "How about you use this cheese as bait?": {
+                    "text": "Mr Michealsen: When have you heard of a rabbit that eats cheese? That's an utterly stupid idea. That's dumb. You're dumb. Never speak to me again.",
+                    "locked": "govt_cheese",
+                    "options": {
+                        "At least give it a try": {
+                            "text": "Mr Michealsen: You know what, I'll give it a shot. Here, hide in that sorghum patch right there. Wouldn't want to accidentally scare those little devils off.\n\nYou crawl into the patch of dry blighted sorghum, and cover yourself so you're fully hidden. Michealsen kicks the blueberry out of the way and puts the wedge of government cheese in its place.[remove cheese][uncheck govt_cheese]. Michealsen then reloads his rifle, and returns to his spot in the brush.\n\nMr Michealsen: Now, we wait.[unlock 228][unlock 613][lock 3]",
+                            "options": {
+                                "Wait": {
+                                    "text": "You wait... it's pretty boring. Not much of anything really happens.",
+                                    "options": {
+                                        "Wait harder": {
+                                            "text": "Minutes go by, then hours. You look over to Mr Michealsen, he appears just as locked in as he was when you started. You almost fall asleep from how uneventful the past hours have been, but then, you hear a rustling in the grass from the other side of the garden. You hold your breath as you try to keep as quiet as possible. You see a critter emerge from the brush, and slowly approach the wedge of cheese. It looks to be a large rat. As it gets closer, you see it's wearing a silk mask wrapped around its eyes, and it carries a big leather sack slung over its back. It sniffs around as it approaches the cheese, and takes a couple of peery glances around to make sure no one's watching. Then, it quickly throws the cheese into the bag, and starts sneaking away.",
+                                            "options": {
+                                                "Follow the rat sneakily": {
+                                                    "text": "You start sneaking after the rat, as quiet as a mouse, and as quick as a... mouse. You look to Michealsen to see if he's going to follow as well, but he's fallen asleep under the sorghum. You decide to follow the rat alone. You see as it scurries up to a small hole in the ground, and crawls inside, dissapearing into the earth.",
+                                                    "options": {
+                                                        "Crawl into the hole": {
+                                                            "text": "You follow the rat into the narrow hole.[load rat_dungeon 0]"
+                                                        },
+                                                        "Nah (leave)": {
+                                                            "text": "[warp 0]"
+                                                        }
+                                                    }
+                                                },
+                                                "Jump the rat and start wailing and walloping": {
+                                                    "text": "You dive out of the bushes and scare the jumping Jehosaphats out of the rat thief!!! However, to much of your surpise,  rat is much faster than you are, and it sprints away in nearly an instant. You try to bolt after it, but it scurries into a small hole in the dirt before you can catch it. You look back to see what Mr Michealsen thinks of this, but he's fast asleep in the sorghum",
+                                                    "options": {
+                                                        "Follow it into the hole": {
+                                                            "text": "You follow the rat into the narrow hole.[load rat_dungeon 0]"
+                                                        },
+                                                        "Nah (leave)": {
+                                                            "text": "[warp 0]"
+                                                        }
+                                                    }   
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "bye (leave)": {
+                    "text": "[warp 0][unlock 3][lock 1]"
                 }
             }
         },
-        "Go to the shed": {
-            "text": ""
+        "Talk to Mr Michealsen": {
+            "text": "Mr Michealsen: What do you want? I'm trying to deal with a rabbit problem.[warp 1]",
+            "msgid": 3,
+            "locked": true
+        },
+        "Talk to Mr Michealsen ": {
+            "text": "He's fast asleep in the sorghum.[warp 0]",
+            "msgid": 613,
+            "locked": true
+        },
+        "Go into the rat hole": {
+            "msgid": 228,
+            "locked": true,
+            "text": "You crawl into the hole that you saw the rat go into.[load rat_dungeon]"
+        },
+        "Look in the shed": {
+            "text": "You look in the shed. There's a full barrel of farm-grade TNT![item bomb o][item bomb o][item bomb][lock][warp 0]"
         },
         "leave": {
-            "text": "You leave"
+            "text": "You leave [load lunch_area 1]"
         }
     }
 }

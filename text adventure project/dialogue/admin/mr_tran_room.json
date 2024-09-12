@@ -1,6 +1,7 @@
 {
     "text": "You get up from the couch with your newfound quest: get Mr Tran a cup of coffee. You feel a little ashamed that your life has come to this, but if this is what you need to get your schedule, so be it.\n\nYou take a look around the room. It's pretty barebones. On the wall is a number of awards. Looking back, you see Mr Tran has once again returned to sleep at his desk. Next to which is a small plastic trash can. To your right is the door leading out of the room",
     "msgid": 1,
+    "unrestricted": true,
     "options": {
         "talk to Mr Tran": {
             "text": "Mr Tran, once again, awakes from his slumber to begrudgingly speak to you.\n\nMr Tran: What is it?",
@@ -52,16 +53,22 @@
             "msgid": 3
         },
         "Leave": {
-            "text": "You open the door out of the counselors office and back into PHS proper. Stepping into the hallway, you are presented with a choice.",
+            "text": "You open the door out of the counselors office and back into PHS proper. Stepping into the hallway, you are presented with a dilemma.",
+            "msgid": 408,
             "options": {
-                "Go right, toward the center quad": {
-                    "text": "You walk down the hallway toward the center quad. You just about reach the main reception area before you feel a tap on your shoulder.\n\n???: Hey! Gimme all your money!\n\nYou turn around, to see none other than Mr Chen sizing you up.\n\nMr Chen: I'm not bluffing![load mr_chen_hallway]"
+                "Go to the Lunch Area": {
+                    "text": "You decide to go toward the lunch area. You almost make it to the doors at the end of the hallway, before they swing open with enough speed to crack the walls. You're then immediately hit with a flash of blinding light emanating from the doors, only being able to make out the vague dark silhouette of a person standing in the doorway.\n\n???: Gimme all your money!\n\nYour eyes readjust to your surroundings, and you see Mr Chen standing before you, with a lit cigarette in his mouth, and dark sunglasses perched on his face.\n\nMr Chen: I'm not bluffing![load mr_chen_hallway 1]"
                 },
-                "Go left, toward the lunch area": {
-                    "text": "You decide to go toward the lunch area. You almost make it to the doors at the end of the hallway, before they swing open with enough speed to crack the walls. You're then immediately hit with a flash of blinding light emanating from the doors, only being able to make out the vague dark silhouette of a person standing in the doorway.\n\n???: Gimme all your money!\n\nYour eyes readjust to your surroundings, and you see Mr Chen standing before you, with a lit cigarette in his mouth, and dark sunglasses perched on his face.\n\nMr Chen: I'm not bluffing![load mr_chen_hallway]"
-                }, 
-                "choices are scary, go back to Mr Tran": {
+                "Go back to Mr Tran": {
                     "text": "You decide this hallway isn't for you, and your future resides only in the beige glory of Mr Tran's office.[warp 1]"
+                },
+                "This is a tough choice, ponder your decision": {
+                    "text": "You stand in the center of the hallway of the admin building, pondering the hardest you've ever pondered before. Go to the lunch area, or not? It's a tough decision. A decision that could very well spell the fate of the next 24 years of your life.[lock][unlock 123][warp 408]"
+                },
+                "Ponder harder": {
+                    "msgid": 123,
+                    "locked": true,
+                    "text": "You decide that you best not rush this decision, so you give it some more thinking time. After about half an hour, you feel a tap on your shoulder.\n\n???: Hey! Gimme all your money!\n\nYou turn around, to see Mr Chen in front of you, with dark sunglasses perched on his face, and a lit cigarette in his mouth.\n\nMr Chen: I'm not bluffing![load mr_chen_hallway 1]"
                 }
             }
         }

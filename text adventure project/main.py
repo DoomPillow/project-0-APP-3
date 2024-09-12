@@ -1,5 +1,5 @@
 
-from locations import locations, current_location
+from locations import world
 
 print("""
       
@@ -22,6 +22,13 @@ print("""
       """)
 
 input("\n\033[38;5;231mPress ENTER to begin")
+
+print("""
+Minor Tutorial:
+\033[38;5;228mChoose an option:\033[38;5;255m Means you can enter a number representing one of the given options.
+\033[38;5;219mWhat do you do?:\033[38;5;255m Means in addition to choosing one of the numbered options, you can also
+use a number of other commands. Type `help` when at this prompt to see those commands. 
+""")
 
 print("""
 August 19th, 2024. 30 minutes before school starts. You walk down the gloomy corridors of the
@@ -58,7 +65,8 @@ print("Mr. Tran: Sorry! Sorry. I wasn't expecting someone to come to my office s
 print("\nMr. Tran lifts up a finger, and spends almost a full minute taking deep breaths to recover from the jumpscare you gave him.")
 input("\nPress Enter to continue...")
 
+# Load the initial dialogue tree and begin the game loop
 
-current_location.active_tree = current_location.dialogue_trees["mr_chen_hallway"]
-while current_location.active_tree != None:
-    current_location.active_tree.run()
+world.active_tree = world.dialogue_trees["default"]
+while world.active_tree != None:
+    world.active_tree.run()
