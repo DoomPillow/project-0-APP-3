@@ -54,3 +54,4 @@
 - Fixed some text being skipped over when it shouldn't've been. 
 - Added shops
 - Added the rat riddle thing that's technically a puzzle
+- The trash can in the cafeteria is currently broken but that's fine for now
